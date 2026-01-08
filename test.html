@@ -3,34 +3,105 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sicherheitsabfrage | Regionalbeirat</title>
+    <title>Sicherheitsabfrage | Projektliste</title>
+    <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f0f2f5; display: flex; align-items: center; justify-content: center; height: 100vh; margin: 0; }
-        .card { background: white; padding: 40px; border-radius: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); text-align: center; max-width: 400px; width: 100%; }
-        h2 { color: #1a2b49; margin-bottom: 10px; }
-        p { color: #666; font-size: 0.9rem; margin-bottom: 25px; }
-        input { width: 100%; padding: 12px; margin-bottom: 20px; border: 1px solid #ddd; border-radius: 6px; box-sizing: border-box; font-size: 1rem; text-align: center; }
-        button { width: 100%; padding: 12px; background-color: #0056b3; color: white; border: none; border-radius: 6px; font-size: 1rem; cursor: pointer; transition: background 0.3s; }
-        button:hover { background-color: #004494; }
-        .footer { margin-top: 20px; font-size: 0.75rem; color: #999; }
+        body { 
+            font-family: 'Public Sans', sans-serif; 
+            background-color: #F7A806; /* Dein Gelb-Ton */
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            height: 100vh; 
+            margin: 0; 
+        }
+        .card { 
+            background: #FFFFFF; 
+            padding: 40px; 
+            border-radius: 25px; 
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15); 
+            text-align: center; 
+            max-width: 450px; 
+            width: 90%; 
+        }
+        h2 { 
+            /* Cooper BT Fallback auf Serif */
+            font-family: 'Cooper BT', serif; 
+            color: #1B6E8C; /* Dein Blau-Ton */
+            font-size: 2rem;
+            margin-bottom: 20px; 
+        }
+        p { 
+            color: #000000; 
+            font-size: 1rem; 
+            line-height: 1.5;
+            margin-bottom: 30px; 
+        }
+        input { 
+            width: 100%; 
+            padding: 15px; 
+            margin-bottom: 20px; 
+            border: 2px solid #FED9C2; /* Dein heller Pfirsich-Ton */
+            border-radius: 12px; 
+            box-sizing: border-box; 
+            font-size: 1rem; 
+            text-align: center;
+            outline: none;
+        }
+        input:focus {
+            border-color: #1B6E8C;
+        }
+        button { 
+            width: 100%; 
+            padding: 15px; 
+            background-color: #1B6E8C; /* Dein Blau-Ton */
+            color: #FFFFFF; 
+            border: none; 
+            border-radius: 12px; 
+            font-size: 1.1rem; 
+            font-weight: 700;
+            cursor: pointer; 
+            transition: transform 0.2s, background 0.3s; 
+        }
+        button:hover { 
+            background-color: #14556d; 
+            transform: translateY(-2px);
+        }
+        .footer { 
+            margin-top: 25px; 
+            font-size: 0.8rem; 
+            color: #1B6E8C;
+            border-top: 1px solid #FED9C2;
+            padding-top: 15px;
+        }
     </style>
 </head>
 <body>
     <div class="card">
-        <h2>Region Bautzen</h2> <p>Bitte geben Sie den Regional-Code ein, um die interaktive Projektliste zu öffnen.</p>
+        <h2>Region Bautzen</h2> <p>Bitte geben Sie das Passwort ein, um die interaktive Projektliste zu öffnen.</p>
+        
         <input type="password" id="pw" placeholder="Passwort eingeben" onkeypress="if(event.key === 'Enter') check()">
+        
         <button onclick="check()">Liste öffnen</button>
-        <div class="footer">Vertrauliche Informationen – Nur für Mitglieder des Beirats</div>
+        
+        <div class="footer">
+            <strong>Vertrauliche Informationen</strong><br>
+            Nur für Mitglieder des Beirats bestimmt.
+        </div>
     </div>
 
     <script>
         function check() {
             const pass = document.getElementById("pw").value;
-            // 2. PASSWORT UND POWER BI LINK ANPASSEN
-            if (pass === "test1234") { 
-                window.location.href = "https://app.powerbi.com/view?r=eyJrIjoiMDI0Njg4MWUtMjAwOS00ZWUwLWI5YmUtYTI5OTYzYzY2ZjUzIiwidCI6ImZkZTM3ODFjLTU5M2UtNDkxNi1iNzdiLTQ4NTBiNjg3ODk3NSJ9&pageName=123c687528c7d5907882";
+            
+            // HIER PASSWORT UND POWER BI LINK ANPASSEN
+            const correctPassword = "1234"; 
+            const targetUrl = "https://app.powerbi.com/view?r=eyJrIjoiNzFiNTNmNjItZjJiZi00MTcyLWFkNjUtNTc4ODNlNTEwOWJhIiwidCI6ImZkZTM3ODFjLTU5M2UtNDkxNi1iNzdiLTQ4NTBiNjg3ODk3NSJ9&pageName=123c687528c7d5907882";
+
+            if (pass === correctPassword) { 
+                window.location.href = targetUrl;
             } else {
-                alert("Der eingegebene Code ist nicht korrekt.");
+                alert("Der eingegebene Code ist nicht korrekt. Bitte prüfen Sie Ihre Unterlagen.");
             }
         }
     </script>
