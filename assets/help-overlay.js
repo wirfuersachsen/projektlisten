@@ -1,6 +1,7 @@
 function buildHelpOverlayHTML() {
   return `
-<div id="help-overlay-backdrop" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(22, 35, 43, 0.5); z-index: 9998; display: flex; align-items: center; justify-content: center; padding: 20px; box-sizing: border-box;">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<div id="help-overlay-backdrop" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(22, 35, 43, 0.5); z-index: 9998; display: flex; align-items: center; justify-content: center; padding: 20px; box-sizing: border-box; font-family: 'Inter', -apple-system, 'Segoe UI', sans-serif;">
   <div id="help-overlay-card" style="background: #FDFCFA; border-radius: 20px; max-width: 560px; width: 100%; max-height: 85vh; box-shadow: 0 20px 60px rgba(0,0,0,0.2); box-sizing: border-box; display: flex; flex-direction: column; overflow: hidden;">
     <div style="padding: 36px 32px 20px; overflow-y: auto; flex: 1;">
       <h2 style="font-size: 20px; font-weight: 600; color: #16232B; margin: 0 0 20px; letter-spacing: -0.01em;">Anleitung zur interaktiven Projektliste</h2>
@@ -57,7 +58,7 @@ function initHelpButton() {
   const btn = document.createElement("button");
   btn.setAttribute("aria-label", "Hilfe anzeigen");
   btn.innerHTML = "?";
-  btn.style.cssText = "position: fixed; bottom: 20px; left: 20px; width: 40px; height: 40px; border-radius: 50%; background: #1B6E8C; color: #fff; border: none; font-size: 16px; font-weight: 700; cursor: pointer; box-shadow: 0 2px 8px rgba(0,0,0,0.15); z-index: 9997;";
+  btn.style.cssText = "position: fixed; bottom: 20px; left: 20px; width: 40px; height: 40px; border-radius: 50%; background: #1B6E8C; color: #fff; border: none; font-size: 16px; font-weight: 700; font-family: 'Inter', -apple-system, 'Segoe UI', sans-serif; cursor: pointer; box-shadow: 0 2px 8px rgba(0,0,0,0.15); z-index: 9997;";
   btn.addEventListener("click", showHelpOverlay);
   document.body.appendChild(btn);
 }
