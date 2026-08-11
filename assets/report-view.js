@@ -23,4 +23,8 @@ if (!reportUrl) {
 </style>
 <iframe id="report-frame" src="${reportUrl}" allowfullscreen></iframe>
 `);
+
+  if (window.history && window.history.replaceState) {
+    window.history.replaceState({}, document.title, window.location.pathname);
+  }
 }
