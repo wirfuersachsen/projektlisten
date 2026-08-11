@@ -1,6 +1,5 @@
 function buildHelpOverlayHTML() {
   return `
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <div id="help-overlay-backdrop" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(22, 35, 43, 0.5); z-index: 9998; display: flex; align-items: center; justify-content: center; padding: 20px; box-sizing: border-box; font-family: 'Inter', -apple-system, 'Segoe UI', sans-serif;">
   <div id="help-overlay-card" style="background: #FDFCFA; border-radius: 20px; max-width: 560px; width: 100%; max-height: 85vh; box-shadow: 0 20px 60px rgba(0,0,0,0.2); box-sizing: border-box; display: flex; flex-direction: column; overflow: hidden;">
     <div style="padding: 36px 32px 20px; overflow-y: auto; flex: 1;">
@@ -28,11 +27,21 @@ function buildHelpOverlayHTML() {
 `;
 }
 
+function ensureInterFont() {
+  if (document.getElementById("help-overlay-font")) return;
+  const link = document.createElement("link");
+  link.id = "help-overlay-font";
+  link.rel = "stylesheet";
+  link.href = "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap";
+  document.head.appendChild(link);
+}
+
 function handleHelpOverlayKeydown(e) {
   if (e.key === "Escape") closeHelpOverlay();
 }
 
 function showHelpOverlay() {
+  ensureInterFont();
   if (document.getElementById("help-overlay-backdrop")) return;
   const wrapper = document.createElement("div");
   wrapper.innerHTML = buildHelpOverlayHTML();
