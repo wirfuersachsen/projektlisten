@@ -1,30 +1,34 @@
 const params = new URLSearchParams(window.location.search);
 const reportUrl = params.get("url");
 
-if (!reportUrl) {
-  document.write("<p style='font-family:sans-serif;padding:40px;'>Kein Bericht angegeben. Bitte über die Passwortseite Ihrer Region aufrufen.</p>");
-} else {
-  document.write(`
-<style>
-  html, body {
-    margin: 0;
-    padding: 0;
-    height: 100%;
-    font-family: 'Inter', -apple-system, 'Segoe UI', sans-serif;
+function initReportView() {
+  if (!reportUrl) {
+    const msg = document.createElement("p");
+    msg.style.cssText = "font-family: sans-serif; padding: 40px;";
+    msg.textContent = "Kein Bericht angegeben. Bitte über die Passwortseite Ihrer Region aufrufen.";
+    document.body.appendChild(msg);
+    return;
   }
-  #report-frame {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    border: none;
-  }
-</style>
-<iframe id="report-frame" src="${reportUrl}" allowfullscreen></iframe>
-`);
+
+  document.body.style.margin = "0";
+  document.body.style.padding = "0";
+  document.body.style.height = "100%";
+  document.documentElement.style.height = "100%";
+
+  const iframe = document.createElement("iframe");
+  iframe.id = "report-frame";
+  iframe.src = reportUrl;
+  iframe.setAttribute("allowfullscreen", "");
+  iframe.style.cssText = "position: fixed; top: 0; left: 0; width: 100%; height: 100%; border: none;";
+  document.body.appendChild(iframe);
 
   if (window.history && window.history.replaceState) {
     window.history.replaceState({}, document.title, window.location.pathname);
   }
+}
+
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", initReportView);
+} else {
+  initReportView();
 }
