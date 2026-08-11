@@ -126,7 +126,7 @@ document.write(`
 function gateCheck() {
   const pass = document.getElementById("pw").value;
   if (pass === CORRECT_PASSWORD) {
-    window.location.href = TARGET_URL;
+    window.location.href = "report.html?url=" + encodeURIComponent(TARGET_URL);
   } else {
     alert("Der eingegebene Code ist nicht korrekt. Bitte prüfen Sie Ihre Unterlagen.");
   }
