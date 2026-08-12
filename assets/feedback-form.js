@@ -48,6 +48,7 @@ function buildSuccessHTML() {
   </div>
   <h2 style="font-size: 18px; font-weight: 600; color: #16232B; margin: 0 0 8px;">Danke, gesendet!</h2>
   <p style="font-size: 13.5px; color: #6B6459; margin: 0;">Dieses Fenster schließt sich gleich automatisch.</p>
+  <p id="feedback-close-hint" style="font-size: 13.5px; color: #1B6E8C; margin: 16px 0 0; display: none; font-weight: 500;">Sie können dieses Fenster jetzt schließen.</p>
 </div>
 `;
 }
@@ -116,6 +117,10 @@ function initFeedbackForm() {
         document.getElementById("feedback-card").outerHTML = buildSuccessHTML();
         setTimeout(function () {
           window.close();
+          setTimeout(function () {
+            const hint = document.getElementById("feedback-close-hint");
+            if (hint) hint.style.display = "block";
+          }, 300);
         }, 2000);
       })
       .catch(function () {
