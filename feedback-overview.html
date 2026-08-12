@@ -45,6 +45,8 @@
   function buildGroupHTML(projektID, entries) {
     const landkreis = entries[0].Landkreis || "";
     const antragsnummer = entries[0].Antragsnummer || "";
+    const projekttitel = entries[0].Projekttitel || "";
+    const antragsteller = entries[0].Antragstellerin || "";
 
     const entriesHTML = entries.map(function (entry) {
       return `
@@ -62,8 +64,11 @@
     return `
   <div class="feedback-group" data-landkreis="${escapeHtml(landkreis)}" style="background: #FDFCFA; border: 1px solid #EFEAE0; border-radius: 14px; padding: 18px 20px; margin-bottom: 16px;">
     <div style="display: flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap;">
-      <h3 style="font-size: 15px; font-weight: 600; color: #1B6E8C; margin: 0;">Projekt-ID ${escapeHtml(projektID)} <span style="font-weight: 400; color: #8A8377;">&middot; ${escapeHtml(landkreis)} &middot; ${escapeHtml(antragsnummer)}</span></h3>
-      <button class="copy-btn" data-projekt-id="${escapeHtml(projektID)}" style="padding: 6px 12px; background: #1B6E8C; color: #fff; border: none; border-radius: 8px; font-size: 12px; font-weight: 600; cursor: pointer;">Kopieren</button>
+      <div>
+        <h3 style="font-size: 15px; font-weight: 600; color: #1B6E8C; margin: 0 0 2px;">Projekt-ID ${escapeHtml(projektID)} &middot; ${escapeHtml(antragsnummer)}</h3>
+        <p style="font-size: 13px; color: #4A4640; margin: 0;"><strong>${escapeHtml(projekttitel)}</strong> &middot; ${escapeHtml(antragsteller)} &middot; ${escapeHtml(landkreis)}</p>
+      </div>
+      <button class="copy-btn" data-projekt-id="${escapeHtml(projektID)}" style="padding: 6px 12px; background: #1B6E8C; color: #fff; border: none; border-radius: 8px; font-size: 12px; font-weight: 600; cursor: pointer; flex-shrink: 0;">Kopieren</button>
     </div>
     ${entriesHTML}
   </div>
@@ -72,8 +77,8 @@
 
   function buildCopyText(entries) {
     return entries.map(function (entry) {
-      return `${formatDate(entry.Created)} — ${entry.Name} (${entry.Organisation}): ${entry.Anmerkung}`;
-    }).join("\n\n");
+      return entry.Anmerkung;
+    }).join("\n\n---\n\n");
   }
 
   function renderGroups(groupedData, filterLandkreis, container, countEl) {
