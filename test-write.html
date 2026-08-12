@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<title>SharePoint Schreibtest</title>
+</head>
+<body style="font-family: sans-serif; padding: 40px; max-width: 600px; margin: 0 auto;">
+  <h2>SharePoint-Schreibtest</h2>
+  <p>Klick den Button, um testweise einen Eintrag in die Liste "Feedback Regionalbeirat 2027" zu schreiben.</p>
+  <button onclick="testWrite()" style="padding: 12px 20px; font-size: 14px; cursor: pointer;">Testeintrag schreiben</button>
+  <pre id="result" style="margin-top: 20px; padding: 16px; background: #f5f5f5; border-radius: 8px; white-space: pre-wrap; word-break: break-all;"></pre>
+
+<script>
+const SITE_URL = "https://buergerstiftungdresden.sharepoint.com/sites/WfS2023";
+const LIST_NAME = "Feedback Regionalbeirat 2027";
+
+function log(msg) {
+  document.getElementById("result").textContent += msg + "\n\n";
+}
+
+async function testWrite() {
+  document.getElementById("result").textContent = "";
+  try {
+    log("Schritt 1: Hole Request-Digest...");
+    const digestResponse = await fetch(`${SITE_URL}/_api/contextinfo`, {
+      method: "POST",
+      headers: {
+        "Accept": "application/json;odata=verbose"
+      },
+      credentials: "omit"
+    });
+
+    log("Digest-Antwort Status: " + digestResponse.status);
+
+    if (!digestResponse.ok) {
+      const text = await digestResponse.text();
+      log("Digest FEHLER: " + text);
+      return;
+    }
+
+    const digestData = await digestResponse.json();
+    const digest = digestData.d.GetContextWebInformation.FormDigestValue;
+    log("Digest erhalten: " + digest.substring(0, 30) + "...");
+
+    log("Schritt 2: Schreibe Testeintrag...");
+    const itemResponse = await fetch(`${SITE_URL}/_api/web/lists/getbytitle('${encodeURIComponent(LIST_NAME)}')/items`, {
+      method: "POST",
+      headers: {
+        "Accept": "application/json;odata=verbose",
+        "Content-Type": "application/json;odata=verbose",
+        "X-RequestDigest": digest
+      },
+      credentials: "omit",
+      body: JSON.stringify({
+        "__metadata": { "type": "SP.Data.Feedback_x0020_Regionalbeirat_x0020_2027ListItem" },
+        "Title": "Testeintrag",
+        "Landkreis": "Testregion",
+        "ProjektID": "TEST-0001",
+        "Antragsnummer": "TEST",
+        "Name": "Testperson",
+        "Organisation": "Testverein",
+        "EMail": "test@example.com",
+        "Anmerkung": "Dies ist ein automatischer Schreibtest."
+      })
+    });
+
+    log("Schreiben-Antwort Status: " + itemResponse.status);
+    const resultText = await itemResponse.text();
+    log("Antwort: " + resultText);
+
+    if (itemResponse.ok) {
+      log("✅ ERFOLG! Der Eintrag wurde geschrieben.");
+    } else {
+      log("❌ FEHLGESCHLAGEN.");
+    }
+  } catch (err) {
+    log("❌ AUSNAHME: " + err.message);
+  }
+}
+</script>
+</body>
+</html>
