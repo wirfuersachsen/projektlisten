@@ -139,7 +139,11 @@
     const select = document.getElementById("lk-filter");
 
     try {
-      const response = await fetch(READ_FLOW_URL, { method: "GET" });
+      const response = await fetch(READ_FLOW_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: "{}"
+      });
 
       if (!response.ok) {
         container.innerHTML = `<p style="color: #B00020;">Fehler beim Laden (Status ${response.status}).</p>`;
