@@ -16,8 +16,8 @@ function getParam(name) {
 function buildFormHTML(landkreis, projektID, antragsnummer, projekttitel, antragsteller) {
   return `
 <div id="feedback-card" style="max-width: 480px; margin: 0 auto; padding: 32px 28px; box-sizing: border-box; font-family: 'Inter', -apple-system, 'Segoe UI', sans-serif;">
-  <h2 style="font-size: 19px; font-weight: 600; color: #16232B; margin: 0 0 4px;">Feedback zu ${projekttitel}</h2>
-  <p style="font-size: 13px; color: #8A8377; margin: 0 0 2px;">${antragsteller}</p>
+  <h2 style="font-size: 19px; font-weight: 600; color: #16232B; margin: 0 0 4px;">Feedback zum Bewilligungsvorschlag: "${projekttitel}"</h2>
+  <p style="font-size: 13px; color: #8A8377; margin: 0 0 2px;"><strong style="color: #16232B;">Antragsteller:</strong> ${antragsteller}</p>
   <p style="font-size: 13px; color: #8A8377; margin: 0 0 24px;">${landkreis} &middot; Projekt-ID ${projektID} &middot; ${antragsnummer}</p>
 
   <form id="feedback-form">
