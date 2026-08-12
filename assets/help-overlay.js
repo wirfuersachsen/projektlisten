@@ -69,7 +69,7 @@ function initHelpButton() {
   const btn = document.createElement("button");
   btn.setAttribute("aria-label", "Hilfe anzeigen");
   btn.innerHTML = "?";
-  btn.style.cssText = "position: fixed; bottom: 32px; left: 76px; width: 48px; height: 48px; border-radius: 50%; background: #1B6E8C; color: #fff; border: none; font-size: 18px; font-weight: 700; font-family: 'Inter', -apple-system, 'Segoe UI', sans-serif; cursor: pointer; box-shadow: 0 2px 8px rgba(0,0,0,0.15); z-index: 9997;";
+  btn.style.cssText = "position: fixed; bottom: 64px; left: 76px; width: 48px; height: 48px; border-radius: 50%; background: #1B6E8C; color: #fff; border: none; font-size: 18px; font-weight: 700; font-family: 'Inter', -apple-system, 'Segoe UI', sans-serif; cursor: pointer; box-shadow: 0 2px 8px rgba(0,0,0,0.15); z-index: 9997;";
   btn.addEventListener("click", showHelpOverlay);
   document.body.appendChild(btn);
 }
@@ -78,7 +78,7 @@ function initDownloadButton() {
   const btn = document.createElement("button");
   btn.setAttribute("aria-label", "Projektliste als Excel herunterladen");
   btn.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" style="width: 20px; height: 20px;"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg>`;
-  btn.style.cssText = "position: fixed; bottom: 32px; left: 20px; width: 48px; height: 48px; border-radius: 50%; background: #1B6E8C; color: #fff; border: none; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 2px 8px rgba(0,0,0,0.15); z-index: 9997;";
+  btn.style.cssText = "position: fixed; bottom: 64px; left: 20px; width: 48px; height: 48px; border-radius: 50%; background: #1B6E8C; color: #fff; border: none; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 2px 8px rgba(0,0,0,0.15); z-index: 9997;";
   btn.addEventListener("click", function () {
     window.open(DOWNLOAD_URL, "_blank");
   });
