@@ -112,7 +112,9 @@ function initFeedbackForm() {
         name: name,
         organisation: organisation,
         email: email,
-        anmerkung: anmerkung
+        anmerkung: anmerkung,
+        projekttitel: projekttitel,
+        antragsteller: antragsteller
       })
     })
       .then(function () {
