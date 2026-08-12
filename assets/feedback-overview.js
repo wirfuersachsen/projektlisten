@@ -148,7 +148,7 @@ async function loadFeedback() {
       `${SITE_URL}/_api/web/lists/getbytitle('${encodeURIComponent(LIST_NAME)}')/items?$top=500&$orderby=Created desc`,
       {
         headers: { "Accept": "application/json;odata=verbose" },
-        credentials: "omit"
+        credentials: "include"
       }
     );
 
