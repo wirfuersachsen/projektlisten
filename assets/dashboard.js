@@ -24,11 +24,12 @@ const SECTIONS = [
       { name: "Liste: Anmeldecodes", desc: "Temporäre 6-stellige Codes mit Ablaufzeit", url: "https://buergerstiftungdresden.sharepoint.com/sites/WfS2023/Lists/Anmeldecodes/AllItems.aspx" }
     ]
   },
-  {
+ {
     title: "Berichte",
     icon: "📊",
     items: [
-      { name: "Liste: Regionsberichte 2027", desc: "Region → Power-BI-Link-Zuordnung (hier 2027er-Links im Dezember eintragen)", url: "https://buergerstiftungdresden.sharepoint.com/sites/WfS2023/Lists/Regionsberichte/AllItems.aspx" }
+      { name: "Liste: Regionsberichte 2027", desc: "Region → Power-BI-Link-Zuordnung (hier 2027er-Links im Dezember eintragen)", url: "https://buergerstiftungdresden.sharepoint.com/sites/WfS2023/Lists/Regionsberichte/AllItems.aspx" },
+      { name: "Power BI Service", desc: "Berichte veröffentlichen, automatische Aktualisierung einrichten, Datenquellen-Zugriff verwalten", url: "https://app.powerbi.com/" }
     ]
   },
   {
