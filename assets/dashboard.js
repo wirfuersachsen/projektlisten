@@ -6,12 +6,11 @@ function ensureInterFont() {
 }
 
 const SECTIONS = [
-  {
+   {
     title: "Plattform",
     icon: "🏠",
     items: [
       { name: "Öffentliche Plattform", desc: "Canva-Seite mit den 13 Regions-Buttons", url: "https://wfs-regionalbeirat.de/" },
-      { name: "Regionsseiten (GitHub Pages)", desc: "Live-Domain für alle 13 Gate-Seiten", url: "https://projekte.wfs-regionalbeirat.de/" },
       { name: "GitHub-Repository", desc: "Quellcode aller 13 Regionsseiten und Assets", url: "https://github.com/wirfuersachsen/projektlisten" }
     ]
   },
