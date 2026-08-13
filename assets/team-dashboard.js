@@ -6,11 +6,12 @@ function ensureInterFont() {
 }
 
 const SECTIONS = [
-  {
+{
     title: "Feedback der Beiräte",
     icon: "💬",
     items: [
-      { name: "Feedback-Übersicht", desc: "Gruppiert nach Projekt-ID, mit Kopier-Funktion für die Arbeitstabelle", url: "feedback-overview.html" }
+      { name: "Feedback-Übersicht", desc: "Gruppiert nach Projekt-ID, mit Kopier-Funktion für die Arbeitstabelle", url: "feedback-overview.html" },
+      { name: "Feedback (Rohdaten)", desc: "Alle Einträge einzeln, ungruppiert", url: "https://buergerstiftungdresden.sharepoint.com/sites/WfS2023/Lists/Feedback%20Regionalbeirat%202027/AllItems.aspx" }
     ]
   },
   {
