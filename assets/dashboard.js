@@ -9,12 +9,12 @@ function ensureInterFont() {
 
 function buildGateHTML() {
   return `
-  <div style="min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 20px; box-sizing: border-box;">
+  <div style="min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 20px; box-sizing: border-box; font-family: 'Inter', -apple-system, 'Segoe UI', sans-serif;">
     <div style="background: #FDFCFA; border-radius: 20px; padding: 40px 32px; max-width: 400px; width: 100%; box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 12px 32px rgba(0,0,0,0.04); border: 1px solid #EFEAE0; box-sizing: border-box;">
       <h2 style="font-size: 19px; font-weight: 600; color: #16232B; margin: 0 0 8px;">Interner Bereich</h2>
       <p style="font-size: 13.5px; color: #6B6459; margin: 0 0 20px;">Asset-Übersicht — nur für Mitarbeitende.</p>
-      <input type="password" id="gate-pw" placeholder="Passwort eingeben" style="width: 100%; padding: 11px 14px; border: 1.5px solid #E8E1D3; border-radius: 10px; box-sizing: border-box; font-size: 14px; margin-bottom: 14px; background: #FBFAF7; outline: none;">
-      <button id="gate-submit" style="width: 100%; padding: 12px; background: #1B6E8C; color: #fff; border: none; border-radius: 10px; font-size: 14px; font-weight: 600; cursor: pointer;">Öffnen</button>
+      <input type="password" id="gate-pw" placeholder="Passwort eingeben" style="width: 100%; padding: 11px 14px; border: 1.5px solid #E8E1D3; border-radius: 10px; box-sizing: border-box; font-size: 14px; font-family: inherit; margin-bottom: 14px; background: #FBFAF7; outline: none;">
+      <button id="gate-submit" style="width: 100%; padding: 12px; background: #1B6E8C; color: #fff; border: none; border-radius: 10px; font-size: 14px; font-weight: 600; font-family: inherit; cursor: pointer;">Öffnen</button>
       <p id="gate-error" style="color: #B00020; font-size: 12.5px; margin: 12px 0 0; display: none;">Falsches Passwort.</p>
     </div>
   </div>
