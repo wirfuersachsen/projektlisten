@@ -108,8 +108,8 @@ function showCodeStep(email) {
         return response.json();
       })
       .then(function (data) {
-        if (data.status === "valid") {
-          window.location.href = "report.html?url=" + encodeURIComponent(TARGET_URL);
+        if (data.status === "valid" && data.reportUrl) {
+          window.location.href = "report.html?url=" + encodeURIComponent(data.reportUrl);
         } else {
           btn.disabled = false;
           btn.textContent = "Bestätigen";
