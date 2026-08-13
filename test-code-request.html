@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<title>Test: Code anfordern</title>
+</head>
+<body style="font-family: sans-serif; padding: 40px; max-width: 500px; margin: 0 auto;">
+  <h2>Test: Code anfordern</h2>
+  <label>E-Mail:</label><br>
+  <input type="text" id="test-email" style="width: 100%; padding: 8px; margin: 8px 0;"><br>
+  <label>Region:</label><br>
+  <input type="text" id="test-region" style="width: 100%; padding: 8px; margin: 8px 0;"><br>
+  <button onclick="testRequest()" style="padding: 10px 20px; margin-top: 10px;">Code anfordern</button>
+  <pre id="result" style="margin-top: 20px; padding: 16px; background: #f5f5f5; white-space: pre-wrap;"></pre>
+
+<script>
+const FLOW_URL = "https://defaultfde3781c593e4916b77b4850b68789.75.environment.api.powerplatform.com:443/powerautomate/automations/direct/cu/15/workflows/04a44095f7714df89eb36184bd1e8fff/triggers/manual/paths/invoke?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=chVN6m6VqWPJTZhFkKaGcBBA5bPxi3UoInOFNPdy3kA";
+
+async function testRequest() {
+  const email = document.getElementById("test-email").value;
+  const region = document.getElementById("test-region").value;
+  const result = document.getElementById("result");
+  result.textContent = "Sende Anfrage...";
+
+  try {
+    const response = await fetch(FLOW_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email: email, region: region })
+    });
+    const text = await response.text();
+    result.textContent = "Status: " + response.status + "\n\nAntwort: " + text;
+  } catch (err) {
+    result.textContent = "Fehler: " + err.message;
+  }
+}
+</script>
+</body>
+</html>
