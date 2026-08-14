@@ -14,7 +14,7 @@ function startFeedbackConfirmationPolling() {
     const stored = localStorage.getItem("feedback_last_seen_timestamp");
     if (stored) lastSeenTimestamp = parseInt(stored, 10) || 0;
   } catch (e) {
-    return;
+    return; // localStorage nicht verfügbar - Feature einfach überspringen
   }
 
   setInterval(function () {
@@ -37,6 +37,7 @@ function startFeedbackConfirmationPolling() {
 
 const params = new URLSearchParams(window.location.search);
 const reportUrl = params.get("url");
+window.WFS_SNAPSHOT_URL = params.get("snapshot") || "";
 
 function initReportView() {
   if (!reportUrl) {
