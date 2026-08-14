@@ -109,7 +109,10 @@ function showCodeStep(email) {
       })
       .then(function (data) {
         if (data.status === "valid" && data.reportUrl) {
-          window.location.href = "report.html?url=" + encodeURIComponent(data.reportUrl);
+          const params = new URLSearchParams();
+          params.set("url", data.reportUrl);
+          if (data.snapshotUrl) params.set("snapshot", data.snapshotUrl);
+          window.location.href = "report.html?" + params.toString();
         } else {
           btn.disabled = false;
           btn.textContent = "Bestätigen";
