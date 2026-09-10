@@ -37,6 +37,11 @@
       display: block;
     }
 
+    #report-view:fullscreen {
+      width: 100vw;
+      height: 100vh;
+    }
+
     /* Help button */
     .help-btn {
       position: fixed;
@@ -309,52 +314,50 @@
       <div class="spinner"></div>
       <div class="spinner-text">Seite wird geladen …</div>
     </div>
-  </div>
-  <button class="home-btn" id="home-btn" onclick="navigateToPage(REPORT_PAGES[0].id)" title="Zur Startseite">⌂</button>
-  <button class="nav-btn" id="nav-btn" onclick="showOverlay('nav-overlay')" title="Seiten anzeigen">☰</button>
-  <button class="help-btn" id="help-btn" onclick="showOverlay('help-overlay')" title="Hilfe anzeigen">❓</button>
+    <button class="home-btn" id="home-btn" onclick="navigateToPage(REPORT_PAGES[0].id)" title="Zur Startseite">⌂</button>
+    <button class="nav-btn" id="nav-btn" onclick="showOverlay('nav-overlay')" title="Seiten anzeigen">☰</button>
+    <button class="help-btn" id="help-btn" onclick="showOverlay('help-overlay')" title="Hilfe anzeigen">❓</button>
+    <!-- Navigations-Overlay: Sprungliste zu allen Berichtsseiten -->
+    <div class="overlay-backdrop" id="nav-overlay">
+      <div class="overlay-card nav-overlay-card">
+        <h2>Seiten im Bericht</h2>
+        <ul class="nav-page-list" id="nav-page-list"></ul>
+        <button class="overlay-close" onclick="closeOverlay('nav-overlay')">Schließen</button>
+      </div>
+    </div>
 
-  <!-- Navigations-Overlay: Sprungliste zu allen Berichtsseiten -->
-  <div class="overlay-backdrop" id="nav-overlay">
-    <div class="overlay-card nav-overlay-card">
-      <h2>Seiten im Bericht</h2>
-      <ul class="nav-page-list" id="nav-page-list"></ul>
-      <button class="overlay-close" onclick="closeOverlay('nav-overlay')">Schließen</button>
+    <!-- Start-Overlay: kurze Einführung beim ersten Öffnen -->
+    <div class="overlay-backdrop" id="start-overlay">
+      <div class="overlay-card">
+        <h2>Kurz erklärt</h2>
+        <ul class="overlay-list">
+          <li><span class="icon">🖱️</span><span>Auf Balken, Karten oder Legenden klicken zum Filtern</span></li>
+          <li><span class="icon">☰</span><span>Über das Menü-Symbol unten direkt zu einer Seite springen</span></li>
+          <li><span class="icon">🔄</span><span>Erneut klicken hebt die Filterung auf</span></li>
+          <li><span class="icon">📥</span><span>PDF-Berichte auf der letzten Seite (Download) im Bericht</span></li>
+        </ul>
+        <button class="overlay-close" onclick="closeOverlay('start-overlay')">Los geht's</button>
+      </div>
+    </div>
+
+    <!-- Hilfe-Overlay: ausführlicher, jederzeit über ❓ erreichbar -->
+    <div class="overlay-backdrop" id="help-overlay">
+      <div class="overlay-card">
+        <h2>Hilfe zum Dashboard</h2>
+        <ul class="overlay-list">
+          <li><span class="icon">🖱️</span><span>Auf Balken, Karten oder Legenden klicken zum Filtern</span></li>
+          <li><span class="icon">☰</span><span>Über das Menü-Symbol unten direkt zu einer Seite springen</span></li>
+          <li><span class="icon">📄</span><span>Alternativ: Seitenzahl unten im Bericht anklicken</span></li>
+          <li><span class="icon">🔄</span><span>Erneut klicken hebt die Filterung auf</span></li>
+          <li><span class="icon">📥</span><span>PDF-Berichte auf der letzten Seite (Download) im Bericht</span></li>
+          <li><span class="icon">🔍</span><span>Der aktive Filter wird unten rechts im Bericht angezeigt</span></li>
+          <li><span class="icon">⛶</span><span>Jedes Diagramm lässt sich über das Symbol oben rechts auf Vollbild erweitern</span></li>
+          <li><span class="icon">📊</span><span>KPI-Karten oben passen sich automatisch an den gewählten Filter an</span></li>
+        </ul>
+        <button class="overlay-close" onclick="closeOverlay('help-overlay')">Schließen</button>
+      </div>
     </div>
   </div>
-
-  <!-- Start-Overlay: kurze Einführung beim ersten Öffnen -->
-  <div class="overlay-backdrop" id="start-overlay">
-    <div class="overlay-card">
-      <h2>Kurz erklärt</h2>
-      <ul class="overlay-list">
-        <li><span class="icon">🖱️</span><span>Auf Balken, Karten oder Legenden klicken zum Filtern</span></li>
-        <li><span class="icon">☰</span><span>Über das Menü-Symbol unten direkt zu einer Seite springen</span></li>
-        <li><span class="icon">🔄</span><span>Erneut klicken hebt die Filterung auf</span></li>
-        <li><span class="icon">📥</span><span>PDF-Berichte auf der letzten Seite (Download) im Bericht</span></li>
-      </ul>
-      <button class="overlay-close" onclick="closeOverlay('start-overlay')">Los geht's</button>
-    </div>
-  </div>
-
-  <!-- Hilfe-Overlay: ausführlicher, jederzeit über ❓ erreichbar -->
-  <div class="overlay-backdrop" id="help-overlay">
-    <div class="overlay-card">
-      <h2>Hilfe zum Dashboard</h2>
-      <ul class="overlay-list">
-        <li><span class="icon">🖱️</span><span>Auf Balken, Karten oder Legenden klicken zum Filtern</span></li>
-        <li><span class="icon">☰</span><span>Über das Menü-Symbol unten direkt zu einer Seite springen</span></li>
-        <li><span class="icon">📄</span><span>Alternativ: Seitenzahl unten im Bericht anklicken</span></li>
-        <li><span class="icon">🔄</span><span>Erneut klicken hebt die Filterung auf</span></li>
-        <li><span class="icon">📥</span><span>PDF-Berichte auf der letzten Seite (Download) im Bericht</span></li>
-        <li><span class="icon">🔍</span><span>Der aktive Filter wird unten rechts im Bericht angezeigt</span></li>
-        <li><span class="icon">⛶</span><span>Jedes Diagramm lässt sich über das Symbol oben rechts auf Vollbild erweitern</span></li>
-        <li><span class="icon">📊</span><span>KPI-Karten oben passen sich automatisch an den gewählten Filter an</span></li>
-      </ul>
-      <button class="overlay-close" onclick="closeOverlay('help-overlay')">Schließen</button>
-    </div>
-  </div>
-
 
   <script>
     // Fester Freigabe-Token aus dem öffentlichen Power BI Link (bleibt für alle Seiten gleich)
@@ -436,6 +439,24 @@
     }
 
     document.getElementById('report-frame').addEventListener('load', hideSpinner);
+
+    // Wenn im eingebetteten Power-BI-Bericht der Vollbild-Button genutzt wird,
+    // geht das <iframe>-Element selbst in Fullscreen. Dabei würden Buttons/Overlays
+    // (jetzt Geschwister des iframes innerhalb von #report-view) automatisch mit
+    // sichtbar bleiben, WEIL sie im selben Fullscreen-Baum liegen - das reicht in den
+    // meisten Browsern bereits aus. Als zusätzliche Absicherung heben wir den
+    // Fullscreen-Request hier explizit auf #report-view an, falls ein Browser
+    // stattdessen nur den iframe-Inhalt zeigt.
+    document.addEventListener('fullscreenchange', function () {
+      var frame = document.getElementById('report-frame');
+      var view = document.getElementById('report-view');
+      if (document.fullscreenElement === frame && view.requestFullscreen) {
+        view.requestFullscreen().catch(function () {
+          // Falls der Browser das verweigert (z.B. fehlende Nutzergeste),
+          // bleibt der native iframe-Fullscreen bestehen - kein Absturz.
+        });
+      }
+    });
 
     function showOverlay(id) {
       document.getElementById(id).classList.add('active');
