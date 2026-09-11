@@ -112,6 +112,7 @@ function showCodeStep(email) {
           const params = new URLSearchParams();
           params.set("url", data.reportUrl);
           if (data.snapshotUrl) params.set("snapshot", data.snapshotUrl);
+          if (data.pdfUrl) params.set("pdf", data.pdfUrl);
           window.location.href = "report.html?" + params.toString();
         } else {
           btn.disabled = false;
