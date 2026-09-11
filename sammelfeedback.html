@@ -8,36 +8,86 @@
 <meta property="og:title" content="Sammel-Rückmeldung Regionalbeirat 2027">
 <meta property="og:description" content="Formular für Sammel-Rückmeldungen zu mehreren Förderanträgen im Regionalbeirat 2027.">
 <meta property="og:type" content="website">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lora:wght@600;700&family=Work+Sans:wght@400;500;600&display=swap">
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600&display=swap');
-
   * { box-sizing: border-box; }
 
   html, body {
     margin: 0;
     padding: 0;
     font-family: 'Work Sans', -apple-system, sans-serif;
-    background: #FDFCFA;
+    background: #F5F2EC;
+    color: #2B2823;
   }
 
-  .wrap {
-    max-width: 1150px;
-    padding: 28px 32px 30px;
-    position: relative;
+  .page {
+    min-height: 100vh;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 56px 20px;
+  }
+
+  .card {
+    background: #FDFCFA;
+    border: 1px solid #EFEAE0;
+    border-radius: 20px;
+    max-width: 780px;
+    width: 100%;
+    padding: 40px 44px 44px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04), 0 16px 40px rgba(43,40,35,0.06);
+  }
+
+  .head {
+    margin-bottom: 8px;
+  }
+
+  .head-stripe-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+
+  .head-stripe {
+    width: 4px;
+    height: 22px;
+    background: #E8833A;
+    border-radius: 2px;
+    flex-shrink: 0;
+  }
+
+  h1 {
+    font-family: 'Lora', serif;
+    font-weight: 700;
+    font-size: 24px;
+    color: #1B6E8C;
+    margin: 0;
+    line-height: 1.25;
+  }
+
+  .intro {
+    font-size: 14px;
+    color: #6B6459;
+    line-height: 1.6;
+    margin: 0 0 28px;
+    max-width: 60ch;
+  }
+
+  .intro strong {
+    color: #4A4640;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
   }
 
   .top-row {
     display: grid;
     grid-template-columns: 1.3fr 1fr 1fr;
     gap: 14px;
-    margin-bottom: 16px;
-  }
-
-  .main-row {
-    display: grid;
-    grid-template-columns: 1fr 2fr;
-    gap: 14px;
-    margin-bottom: 20px;
   }
 
   .field {
@@ -47,7 +97,7 @@
   }
 
   label {
-    font-size: 11.5px;
+    font-size: 12px;
     font-weight: 500;
     color: #4A4640;
   }
@@ -56,18 +106,13 @@
     color: #E8833A;
   }
 
-  label .hint {
-    font-weight: 400;
-    color: #B8B2A5;
-  }
-
   select, input, textarea {
     font-family: 'Work Sans', sans-serif;
-    font-size: 13px;
-    padding: 9px 10px;
-    border: 1px solid #EFEAE0;
-    border-radius: 8px;
-    background: #fff;
+    font-size: 13.5px;
+    padding: 10px 12px;
+    border: 1px solid #E8E1D3;
+    border-radius: 9px;
+    background: #FBFAF7;
     color: #2B2823;
     width: 100%;
   }
@@ -75,19 +120,20 @@
   select:focus, input:focus, textarea:focus {
     outline: none;
     border-color: #1B6E8C;
+    background: #fff;
   }
 
   textarea {
     resize: none;
-    line-height: 1.45;
+    line-height: 1.5;
   }
 
   #antragsnummern {
-    height: 84px;
+    height: 90px;
   }
 
   #anmerkungen {
-    height: 84px;
+    height: 130px;
   }
 
   .bottom-bar {
@@ -95,26 +141,28 @@
     align-items: center;
     justify-content: space-between;
     margin-top: 4px;
+    gap: 16px;
   }
 
   .error {
-    font-size: 11.5px;
+    font-size: 12px;
     color: #C0503A;
     flex: 1;
   }
 
   button.submit {
     font-family: 'Work Sans', sans-serif;
-    font-size: 13.5px;
+    font-size: 14px;
     font-weight: 600;
     color: #fff;
     background: #1B6E8C;
     border: none;
-    border-radius: 8px;
-    padding: 12px 24px;
+    border-radius: 10px;
+    padding: 13px 28px;
     cursor: pointer;
     white-space: nowrap;
     transition: background 0.15s ease;
+    flex-shrink: 0;
   }
 
   button.submit:hover {
@@ -126,15 +174,24 @@
     cursor: default;
   }
 
+  .foot-note {
+    font-size: 12px;
+    color: #B8B2A5;
+    margin-top: 20px;
+    text-align: center;
+  }
+
   .confirm {
-    position: absolute;
+    position: fixed;
     inset: 0;
-    background: #FDFCFA;
+    background: rgba(245, 242, 236, 0.92);
     display: none;
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    gap: 10px;
+    gap: 14px;
+    text-align: center;
+    padding: 20px;
   }
 
   .confirm.show {
@@ -142,8 +199,8 @@
   }
 
   .confirm-check {
-    width: 44px;
-    height: 44px;
+    width: 56px;
+    height: 56px;
     border-radius: 50%;
     background: #1B6E8C;
     display: flex;
@@ -152,59 +209,85 @@
   }
 
   .confirm-check svg {
-    width: 22px;
-    height: 22px;
+    width: 26px;
+    height: 26px;
   }
 
   .confirm-text {
-    font-size: 15px;
+    font-family: 'Lora', serif;
+    font-size: 19px;
     font-weight: 600;
     color: #2B2823;
   }
 
   .confirm-sub {
-    font-size: 12.5px;
+    font-size: 13.5px;
     color: #8A8377;
+    max-width: 40ch;
+  }
+
+  @media (max-width: 640px) {
+    .card {
+      padding: 28px 22px 32px;
+    }
+    .top-row {
+      grid-template-columns: 1fr;
+    }
+    .bottom-bar {
+      flex-direction: column-reverse;
+      align-items: stretch;
+    }
+    button.submit {
+      width: 100%;
+    }
   }
 </style>
 </head>
 <body>
 
-<div class="wrap">
-  <form id="feedbackForm" autocomplete="off">
-    <div class="top-row">
-      <div class="field">
-        <label for="landkreis">Landkreis / Region <span class="req">*</span></label>
-        <select id="landkreis" name="landkreis" required>
-          <option value="" disabled selected>Bitte wählen</option>
-          <option>Bautzen</option>
-          <option>Chemnitz</option>
-          <option>Erzgebirgskreis</option>
-          <option>Görlitz</option>
-          <option>Landkreis Leipzig</option>
-          <option>Landkreis Zwickau</option>
-          <option>Meißen</option>
-          <option>Mittelsachsen</option>
-          <option>Nordsachsen</option>
-          <option>Sächsische Schweiz-Osterzgebirge</option>
-          <option>Stadt Dresden</option>
-          <option>Stadt Leipzig</option>
-          <option>Vogtlandkreis</option>
-        </select>
+<div class="page">
+  <div class="card">
+    <div class="head">
+      <div class="head-stripe-row">
+        <div class="head-stripe"></div>
+        <h1>Sammel-Rückmeldung Regionalbeirat 2027</h1>
       </div>
-
-      <div class="field">
-        <label for="name">Name <span class="req">*</span></label>
-        <input type="text" id="name" name="name" placeholder="Vor- und Nachname" required>
-      </div>
-
-      <div class="field">
-        <label for="organisation">Organisation <span class="req">*</span></label>
-        <input type="text" id="organisation" name="organisation" placeholder="z. B. Musterverein e.V." required>
-      </div>
+      <p class="intro">Ideal, wenn Sie Anmerkungen zu <strong>mehreren Projekten gleichzeitig</strong> abgeben möchten. Geben Sie die betreffenden Antragsnummern oder Projekt-IDs an, damit wir Ihre Rückmeldung eindeutig zuordnen können.</p>
     </div>
 
-    <div class="main-row">
+    <form id="feedbackForm" autocomplete="off">
+      <div class="top-row">
+        <div class="field">
+          <label for="landkreis">Landkreis / Region <span class="req">*</span></label>
+          <select id="landkreis" name="landkreis" required>
+            <option value="" disabled selected>Bitte wählen</option>
+            <option>Bautzen</option>
+            <option>Chemnitz</option>
+            <option>Erzgebirgskreis</option>
+            <option>Görlitz</option>
+            <option>Landkreis Leipzig</option>
+            <option>Landkreis Zwickau</option>
+            <option>Meißen</option>
+            <option>Mittelsachsen</option>
+            <option>Nordsachsen</option>
+            <option>Sächsische Schweiz-Osterzgebirge</option>
+            <option>Stadt Dresden</option>
+            <option>Stadt Leipzig</option>
+            <option>Vogtlandkreis</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="name">Name <span class="req">*</span></label>
+          <input type="text" id="name" name="name" placeholder="Vor- und Nachname" required>
+        </div>
+
+        <div class="field">
+          <label for="organisation">Organisation <span class="req">*</span></label>
+          <input type="text" id="organisation" name="organisation" placeholder="z. B. Musterverein e.V." required>
+        </div>
+      </div>
+
       <div class="field">
         <label for="antragsnummern">Antragsnummern / Projekt-IDs <span class="req">*</span></label>
         <textarea id="antragsnummern" placeholder="z. B. 0012, 0034, WfS.2605341" required></textarea>
@@ -214,26 +297,29 @@
         <label for="anmerkungen">Sammel-Anmerkung <span class="req">*</span></label>
         <textarea id="anmerkungen" placeholder="Ihre gebündelte Rückmeldung zu den genannten Anträgen …" required></textarea>
       </div>
-    </div>
 
-    <div class="bottom-bar">
-      <div class="error" id="errorMsg"></div>
-      <button type="submit" class="submit" id="submitBtn">Absenden</button>
-    </div>
-  </form>
+      <div class="bottom-bar">
+        <div class="error" id="errorMsg"></div>
+        <button type="submit" class="submit" id="submitBtn">Absenden</button>
+      </div>
+    </form>
 
-  <div class="confirm" id="confirmOverlay">
-    <div class="confirm-check">
-      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M5 13l4 4L19 7" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
-    </div>
-    <div class="confirm-text">Danke, Ihre Sammel-Rückmeldung wurde übermittelt.</div>
+    <p class="foot-note">Regionalbeirat 2027 · Wir für Sachsen</p>
   </div>
 </div>
 
+<div class="confirm" id="confirmOverlay">
+  <div class="confirm-check">
+    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M5 13l4 4L19 7" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </div>
+  <div class="confirm-text">Danke, Ihre Sammel-Rückmeldung wurde übermittelt.</div>
+  <div class="confirm-sub">Sie können dieses Fenster jetzt schließen oder eine weitere Sammel-Rückmeldung abgeben.</div>
+</div>
+
 <script>
-  // Power-Automate-HTTP-Trigger-URL des Flows "Beiratsfeedback empfangen"
+  // Power-Automate-HTTP-Trigger-URL des Flows "Sammelfeedback empfangen"
   const FLOW_URL = "https://defaultfde3781c593e4916b77b4850b68789.75.environment.api.powerplatform.com:443/powerautomate/automations/direct/cu/01/workflows/7c59420863a84f17b6210003aeb72bc7/triggers/manual/paths/invoke?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=a1RHsdYquZHQtLkMkLQP34T9MPuFzKWKZaO0m6-f63A";
 
   const form = document.getElementById("feedbackForm");
@@ -287,12 +373,12 @@
   function showConfirmation() {
     confirmOverlay.classList.add("show");
     setTimeout(function () {
-      confirmOverlay.classList.remove("show");
-      form.reset();
-      submitBtn.disabled = false;
-      submitBtn.textContent = "Absenden";
-      document.getElementById("landkreis").focus();
-    }, 2200);
+      // Versucht den Tab zu schließen (funktioniert nur, wenn der Tab per
+      // JavaScript geöffnet wurde, z.B. über einen Link mit target="_blank"
+      // in manchen Browsern). Falls es nicht klappt, passiert einfach nichts
+      // und der Hinweistext bleibt sichtbar.
+      window.close();
+    }, 2600);
   }
 </script>
 
