@@ -56,7 +56,7 @@
       <h3 style="font-size: 15px; font-weight: 600; color: #B4790A; margin: 0 0 2px;">Sammelrückmeldung</h3>
       <p style="font-size: 13px; color: #4A4640; margin: 0;">${escapeHtml(landkreis)}</p>
     </div>
-    <button class="copy-btn" data-projekt-id="${escapeHtml(groupKey)}" title="Kopiert nur den Anmerkungstext, ohne Betrifft-Zeile" style="position: absolute; top: 18px; right: 20px; padding: 6px 12px; background: #B4790A; color: #fff; border: none; border-radius: 8px; font-size: 12px; font-weight: 600; cursor: pointer;">Nur Anmerkung kopieren</button>
+    <button class="copy-btn" data-projekt-id="${escapeHtml(groupKey)}" title="Kopiert den Anmerkungstext" style="position: absolute; top: 18px; right: 20px; padding: 6px 12px; background: #B4790A; color: #fff; border: none; border-radius: 8px; font-size: 12px; font-weight: 600; cursor: pointer;">Anmerkung kopieren</button>
     ${entriesHTML}
   </div>
   `;
@@ -68,7 +68,7 @@
       <h3 style="font-size: 15px; font-weight: 600; color: #1B6E8C; margin: 0 0 2px;">Projekt-ID ${escapeHtml(groupKey)}</h3>
       <p style="font-size: 13px; color: #4A4640; margin: 0;"><strong>${escapeHtml(projekttitel)}</strong> &middot; ${escapeHtml(antragsteller)} &middot; ${escapeHtml(landkreis)} &middot; ${escapeHtml(antragsnummer)}</p>
     </div>
-    <button class="copy-btn" data-projekt-id="${escapeHtml(groupKey)}" title="Kopiert nur den Anmerkungstext" style="position: absolute; top: 18px; right: 20px; padding: 6px 12px; background: #1B6E8C; color: #fff; border: none; border-radius: 8px; font-size: 12px; font-weight: 600; cursor: pointer;">Nur Anmerkung kopieren</button>
+    <button class="copy-btn" data-projekt-id="${escapeHtml(groupKey)}" title="Kopiert den Anmerkungstext" style="position: absolute; top: 18px; right: 20px; padding: 6px 12px; background: #1B6E8C; color: #fff; border: none; border-radius: 8px; font-size: 12px; font-weight: 600; cursor: pointer;">Anmerkung kopieren</button>
     ${entriesHTML}
   </div>
   `;
@@ -150,7 +150,7 @@
     root.innerHTML = `
       <div style="max-width: 900px; margin: 0 auto; padding: 36px 24px 60px; box-sizing: border-box;">
         <h1 style="font-size: 22px; font-weight: 600; color: #16232B; margin: 0 0 4px;">Feedback-Übersicht</h1>
-        <p style="font-size: 13px; color: #8A8377; margin: 0 0 20px;">Gruppiert nach Projekt-ID, zum Übertragen in die Arbeitstabelle. Sammelrückmeldungen erscheinen als letzter Punkt je Landkreis. „Nur Anmerkung kopieren" überträgt ausschließlich den Rückmeldungstext, ohne Betrifft-/Kontextzeilen.</p>
+        <p style="font-size: 13px; color: #8A8377; margin: 0 0 20px;">Gruppiert nach Projekt-ID, zum Übertragen in die Arbeitstabelle. Sammelrückmeldungen erscheinen als letzter Punkt je Landkreis.</p>
         <div style="display: flex; gap: 12px; align-items: center; margin-bottom: 20px; flex-wrap: wrap;">
           <label style="font-size: 13px; font-weight: 600; color: #16232B;">Landkreis:</label>
           <select id="lk-filter" style="padding: 9px 14px; border: 1.5px solid #E8E1D3; border-radius: 10px; font-size: 13.5px; background: #FBFAF7; min-width: 220px;">
