@@ -38,6 +38,7 @@ function startFeedbackConfirmationPolling() {
 const params = new URLSearchParams(window.location.search);
 const reportUrl = params.get("url");
 window.WFS_SNAPSHOT_URL = params.get("snapshot") || "";
+window.WFS_PDF_URL = params.get("pdf") || "";
 
 function initReportView() {
   if (!reportUrl) {
