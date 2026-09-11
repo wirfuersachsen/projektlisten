@@ -94,10 +94,10 @@ function initPdfButton() {
 
   const btn = document.createElement("button");
   btn.setAttribute("aria-label", "Rückmeldungs-PDF herunterladen");
-  btn.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" style="width: 18px; height: 18px; flex-shrink: 0;"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M12 12v6"/><path d="m9.5 15.5 2.5 2.5 2.5-2.5"/></svg><span>Rückmeldungs-PDF herunterladen</span>`;
-  btn.style.cssText = "position: fixed; bottom: 124px; left: 20px; height: 44px; padding: 0 18px; border-radius: 22px; background: #E8833A; color: #fff; border: none; display: flex; align-items: center; gap: 10px; font-family: 'Inter', -apple-system, 'Segoe UI', sans-serif; font-size: 13.5px; font-weight: 600; cursor: pointer; box-shadow: 0 2px 8px rgba(0,0,0,0.15); z-index: 9997; white-space: nowrap;";
+  btn.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" style="width: 15px; height: 15px; flex-shrink: 0;"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M12 12v6"/><path d="m9.5 15.5 2.5 2.5 2.5-2.5"/></svg><span>Rückmeldungs-PDF</span>`;
+  btn.style.cssText = "position: fixed; bottom: 122px; left: 20px; height: 34px; padding: 0 14px; border-radius: 17px; background: #E8833A; color: #fff; border: none; display: flex; align-items: center; gap: 7px; font-family: 'Inter', -apple-system, 'Segoe UI', sans-serif; font-size: 12.5px; font-weight: 600; cursor: pointer; box-shadow: 0 2px 8px rgba(0,0,0,0.15); z-index: 9997; white-space: nowrap;";
   btn.addEventListener("click", function () {
-    window.location.href = url;
+    window.open(url, "_blank");
   });
   document.body.appendChild(btn);
 }
