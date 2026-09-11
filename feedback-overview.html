@@ -28,8 +28,8 @@
     return `${tag}.${monat}.${jahr}, ${stunde}:${minute} Uhr`;
   }
 
-  function buildGroupHTML(projektID, entries) {
-    const isSammel = projektID === SAMMEL_MARKER;
+  function buildGroupHTML(groupKey, entries) {
+    const isSammel = groupKey.indexOf(SAMMEL_MARKER) === 0;
     const landkreis = entries[0].Landkreis || "";
     const antragsnummer = entries[0].Antragsnummer || "";
     const projekttitel = entries[0].Projekttitel || "";
@@ -57,7 +57,7 @@
         <h3 style="font-size: 15px; font-weight: 600; color: #B4790A; margin: 0 0 2px;">Sammelrückmeldung</h3>
         <p style="font-size: 13px; color: #4A4640; margin: 0;">${escapeHtml(landkreis)}</p>
       </div>
-      <button class="copy-btn" data-projekt-id="${escapeHtml(projektID)}" style="padding: 6px 12px; background: #B4790A; color: #fff; border: none; border-radius: 8px; font-size: 12px; font-weight: 600; cursor: pointer; flex-shrink: 0;">Kopieren</button>
+      <button class="copy-btn" data-projekt-id="${escapeHtml(groupKey)}" style="padding: 6px 12px; background: #B4790A; color: #fff; border: none; border-radius: 8px; font-size: 12px; font-weight: 600; cursor: pointer; flex-shrink: 0;">Kopieren</button>
     </div>
     ${entriesHTML}
   </div>
@@ -68,10 +68,10 @@
   <div class="feedback-group" data-landkreis="${escapeHtml(landkreis)}" style="background: #FDFCFA; border: 1px solid #EFEAE0; border-radius: 14px; padding: 18px 20px; margin-bottom: 16px;">
     <div style="display: flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap;">
       <div>
-        <h3 style="font-size: 15px; font-weight: 600; color: #1B6E8C; margin: 0 0 2px;">Projekt-ID ${escapeHtml(projektID)}</h3>
+        <h3 style="font-size: 15px; font-weight: 600; color: #1B6E8C; margin: 0 0 2px;">Projekt-ID ${escapeHtml(groupKey)}</h3>
         <p style="font-size: 13px; color: #4A4640; margin: 0;"><strong>${escapeHtml(projekttitel)}</strong> &middot; ${escapeHtml(antragsteller)} &middot; ${escapeHtml(landkreis)} &middot; ${escapeHtml(antragsnummer)}</p>
       </div>
-      <button class="copy-btn" data-projekt-id="${escapeHtml(projektID)}" style="padding: 6px 12px; background: #1B6E8C; color: #fff; border: none; border-radius: 8px; font-size: 12px; font-weight: 600; cursor: pointer; flex-shrink: 0;">Kopieren</button>
+      <button class="copy-btn" data-projekt-id="${escapeHtml(groupKey)}" style="padding: 6px 12px; background: #1B6E8C; color: #fff; border: none; border-radius: 8px; font-size: 12px; font-weight: 600; cursor: pointer; flex-shrink: 0;">Kopieren</button>
     </div>
     ${entriesHTML}
   </div>
@@ -88,20 +88,30 @@
   }
 
   function renderGroups(groupedData, filterLandkreis, container, countEl) {
-    const projektIDs = Object.keys(groupedData).sort(function (a, b) {
-      if (a === SAMMEL_MARKER) return 1;
-      if (b === SAMMEL_MARKER) return -1;
+    const groupKeys = Object.keys(groupedData).sort(function (a, b) {
+      const aSammel = a.indexOf(SAMMEL_MARKER) === 0;
+      const bSammel = b.indexOf(SAMMEL_MARKER) === 0;
+      if (aSammel && !bSammel) return 1;
+      if (bSammel && !aSammel) return -1;
+      if (aSammel && bSammel) {
+        // Beide Sammelrückmeldungen: zuerst nach Landkreis, dann chronologisch
+        const aEntry = groupedData[a][0];
+        const bEntry = groupedData[b][0];
+        const lkCompare = (aEntry.Landkreis || "").localeCompare(bEntry.Landkreis || "");
+        if (lkCompare !== 0) return lkCompare;
+        return new Date(aEntry.Created) - new Date(bEntry.Created);
+      }
       return a.localeCompare(b);
     });
     let visibleCount = 0;
     let html = "";
 
-    projektIDs.forEach(function (projektID) {
-      const entries = groupedData[projektID];
+    groupKeys.forEach(function (groupKey) {
+      const entries = groupedData[groupKey];
       const landkreis = entries[0].Landkreis || "";
       if (filterLandkreis && landkreis !== filterLandkreis) return;
       visibleCount += entries.length;
-      html += buildGroupHTML(projektID, entries);
+      html += buildGroupHTML(groupKey, entries);
     });
 
     container.innerHTML = html || `<p style="color: #8A8377;">Keine Einträge für diese Auswahl.</p>`;
@@ -123,7 +133,14 @@
   function groupByProjektID(items) {
     const grouped = {};
     items.forEach(function (item) {
-      const pid = item.ProjektID || "(ohne ID)";
+      const rawPid = item.ProjektID || "(ohne ID)";
+      // Jede Sammelrückmeldung ist eine eigenständige Abgabe einer Person
+      // und darf NICHT mit anderen Sammelrückmeldungen derselben Region
+      // zusammengefasst werden (jede braucht ihren eigenen Kopier-Button).
+      // Der eindeutige Zeitstempel (Created) macht jeden Schlüssel einzigartig.
+      const pid = rawPid === SAMMEL_MARKER
+        ? SAMMEL_MARKER + "::" + (item.Landkreis || "") + "::" + item.Created
+        : rawPid;
       if (!grouped[pid]) grouped[pid] = [];
       grouped[pid].push(item);
     });
