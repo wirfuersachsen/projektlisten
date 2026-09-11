@@ -113,7 +113,12 @@ function showCodeStep(email) {
           params.set("url", data.reportUrl);
           if (data.snapshotUrl) params.set("snapshot", data.snapshotUrl);
           if (data.pdfUrl) params.set("pdf", data.pdfUrl);
-          window.location.href = "report.html?" + params.toString();
+          // replace() statt href: ersetzt den aktuellen History-Eintrag (die
+          // Gate-Seite) anstatt einen neuen anzuhängen. Da dieser Tab ohnehin
+          // getrennt von der Canva-Seite ist, gibt es dadurch keinen "Zurück"-
+          // Zwischenzustand mehr, der zur Code-Eingabe zurückführt - "Zurück"
+          // ist dann in diesem Tab schlicht inaktiv (kein vorheriger Eintrag).
+          window.location.replace("report.html?" + params.toString());
         } else {
           btn.disabled = false;
           btn.textContent = "Bestätigen";
