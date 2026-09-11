@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sammel-Rückmeldung Regionalbeirat 2027</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600&display=swap');
+
+  * { box-sizing: border-box; }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Work Sans', -apple-system, sans-serif;
+    background: #FDFCFA;
+  }
+
+  .wrap {
+    max-width: 1150px;
+    padding: 28px 32px 30px;
+    position: relative;
+  }
+
+  .top-row {
+    display: grid;
+    grid-template-columns: 1.3fr 1fr 1fr;
+    gap: 14px;
+    margin-bottom: 16px;
+  }
+
+  .main-row {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 14px;
+    margin-bottom: 20px;
+  }
+
+  .field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  label {
+    font-size: 11.5px;
+    font-weight: 500;
+    color: #4A4640;
+  }
+
+  label .req {
+    color: #E8833A;
+  }
+
+  label .hint {
+    font-weight: 400;
+    color: #B8B2A5;
+  }
+
+  select, input, textarea {
+    font-family: 'Work Sans', sans-serif;
+    font-size: 13px;
+    padding: 9px 10px;
+    border: 1px solid #EFEAE0;
+    border-radius: 8px;
+    background: #fff;
+    color: #2B2823;
+    width: 100%;
+  }
+
+  select:focus, input:focus, textarea:focus {
+    outline: none;
+    border-color: #1B6E8C;
+  }
+
+  textarea {
+    resize: none;
+    line-height: 1.45;
+  }
+
+  #antragsnummern {
+    height: 84px;
+  }
+
+  #anmerkungen {
+    height: 84px;
+  }
+
+  .bottom-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 4px;
+  }
+
+  .error {
+    font-size: 11.5px;
+    color: #C0503A;
+    flex: 1;
+  }
+
+  button.submit {
+    font-family: 'Work Sans', sans-serif;
+    font-size: 13.5px;
+    font-weight: 600;
+    color: #fff;
+    background: #1B6E8C;
+    border: none;
+    border-radius: 8px;
+    padding: 12px 24px;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background 0.15s ease;
+  }
+
+  button.submit:hover {
+    background: #15586F;
+  }
+
+  button.submit:disabled {
+    background: #B8B2A5;
+    cursor: default;
+  }
+
+  .confirm {
+    position: absolute;
+    inset: 0;
+    background: #FDFCFA;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .confirm.show {
+    display: flex;
+  }
+
+  .confirm-check {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: #1B6E8C;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .confirm-check svg {
+    width: 22px;
+    height: 22px;
+  }
+
+  .confirm-text {
+    font-size: 15px;
+    font-weight: 600;
+    color: #2B2823;
+  }
+
+  .confirm-sub {
+    font-size: 12.5px;
+    color: #8A8377;
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <form id="feedbackForm" autocomplete="off">
+    <div class="top-row">
+      <div class="field">
+        <label for="landkreis">Landkreis / Region <span class="req">*</span></label>
+        <select id="landkreis" name="landkreis" required>
+          <option value="" disabled selected>Bitte wählen</option>
+          <option>Bautzen</option>
+          <option>Chemnitz</option>
+          <option>Erzgebirgskreis</option>
+          <option>Görlitz</option>
+          <option>Landkreis Leipzig</option>
+          <option>Landkreis Zwickau</option>
+          <option>Meißen</option>
+          <option>Mittelsachsen</option>
+          <option>Nordsachsen</option>
+          <option>Sächsische Schweiz-Osterzgebirge</option>
+          <option>Stadt Dresden</option>
+          <option>Stadt Leipzig</option>
+          <option>Vogtlandkreis</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label for="name">Name <span class="req">*</span></label>
+        <input type="text" id="name" name="name" placeholder="Vor- und Nachname" required>
+      </div>
+
+      <div class="field">
+        <label for="organisation">Organisation <span class="req">*</span></label>
+        <input type="text" id="organisation" name="organisation" placeholder="z. B. Musterverein e.V." required>
+      </div>
+    </div>
+
+    <div class="main-row">
+      <div class="field">
+        <label for="antragsnummern">Antragsnummern / Projekt-IDs <span class="req">*</span></label>
+        <textarea id="antragsnummern" placeholder="z. B. 0012, 0034, WfS.2605341" required></textarea>
+      </div>
+
+      <div class="field">
+        <label for="anmerkungen">Sammel-Anmerkung <span class="req">*</span></label>
+        <textarea id="anmerkungen" placeholder="Ihre gebündelte Rückmeldung zu den genannten Anträgen …" required></textarea>
+      </div>
+    </div>
+
+    <div class="bottom-bar">
+      <div class="error" id="errorMsg"></div>
+      <button type="submit" class="submit" id="submitBtn">Absenden</button>
+    </div>
+  </form>
+
+  <div class="confirm" id="confirmOverlay">
+    <div class="confirm-check">
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M5 13l4 4L19 7" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+    <div class="confirm-text">Danke, Ihre Sammel-Rückmeldung wurde übermittelt.</div>
+  </div>
+</div>
+
+<script>
+  // Power-Automate-HTTP-Trigger-URL des Flows "Beiratsfeedback empfangen"
+  const FLOW_URL = "https://defaultfde3781c593e4916b77b4850b68789.75.environment.api.powerplatform.com:443/powerautomate/automations/direct/cu/01/workflows/7c59420863a84f17b6210003aeb72bc7/triggers/manual/paths/invoke?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=a1RHsdYquZHQtLkMkLQP34T9MPuFzKWKZaO0m6-f63A";
+
+  const form = document.getElementById("feedbackForm");
+  const submitBtn = document.getElementById("submitBtn");
+  const errorMsg = document.getElementById("errorMsg");
+  const confirmOverlay = document.getElementById("confirmOverlay");
+
+  form.addEventListener("submit", async function (e) {
+    e.preventDefault();
+    errorMsg.textContent = "";
+
+    const landkreis = document.getElementById("landkreis").value;
+    const name = document.getElementById("name").value.trim();
+    const organisation = document.getElementById("organisation").value.trim();
+    const antragsnummern = document.getElementById("antragsnummern").value.trim();
+    const anmerkungen = document.getElementById("anmerkungen").value.trim();
+
+    if (!landkreis || !name || !organisation || !antragsnummern || !anmerkungen) {
+      errorMsg.textContent = "Bitte alle Felder ausfüllen.";
+      return;
+    }
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = "Wird gesendet …";
+
+    try {
+      const response = await fetch(FLOW_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          landkreis: landkreis,
+          name: name,
+          organisation: organisation,
+          antragsnummern: antragsnummern,
+          anmerkung: anmerkungen
+        })
+      });
+
+      if (!response.ok) {
+        throw new Error("Flow antwortete mit Status " + response.status);
+      }
+
+      showConfirmation();
+    } catch (err) {
+      errorMsg.textContent = "Senden fehlgeschlagen. Bitte erneut versuchen.";
+      submitBtn.disabled = false;
+      submitBtn.textContent = "Absenden";
+    }
+  });
+
+  function showConfirmation() {
+    confirmOverlay.classList.add("show");
+    setTimeout(function () {
+      confirmOverlay.classList.remove("show");
+      form.reset();
+      submitBtn.disabled = false;
+      submitBtn.textContent = "Absenden";
+      document.getElementById("landkreis").focus();
+    }, 2200);
+  }
+</script>
+
+</body>
+</html>
