@@ -10,7 +10,7 @@
 <script>
 (function() {
   const READ_FLOW_URL = "https://defaultfde3781c593e4916b77b4850b68789.75.environment.api.powerplatform.com:443/powerautomate/automations/direct/cu/15/workflows/2bbe02552a7f45ed94a0575290d49ab7/triggers/manual/paths/invoke?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=6NfVlbrTTlp73eaaWb1bKrFU-NsJOEH3wEwnL2Jjw6E";
-  const CORRECT_PASSWORD = "ieHvDntux00FKWey";
+  const SAMMEL_MARKER = "Sammelrückmeldung";
 
   function escapeHtml(str) {
     const div = document.createElement("div");
@@ -28,21 +28,8 @@
     return `${tag}.${monat}.${jahr}, ${stunde}:${minute} Uhr`;
   }
 
-  function buildGateHTML() {
-    return `
-    <div style="min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 20px; box-sizing: border-box;">
-      <div style="background: #FDFCFA; border-radius: 20px; padding: 40px 32px; max-width: 400px; width: 100%; box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 12px 32px rgba(0,0,0,0.04); border: 1px solid #EFEAE0; box-sizing: border-box;">
-        <h2 style="font-size: 19px; font-weight: 600; color: #16232B; margin: 0 0 8px;">Interner Bereich</h2>
-        <p style="font-size: 13.5px; color: #6B6459; margin: 0 0 20px;">Nur für Mitarbeitende des Förderprogramms.</p>
-        <input type="password" id="gate-pw" placeholder="Passwort eingeben" style="width: 100%; padding: 11px 14px; border: 1.5px solid #E8E1D3; border-radius: 10px; box-sizing: border-box; font-size: 14px; margin-bottom: 14px; background: #FBFAF7; outline: none;">
-        <button id="gate-submit" style="width: 100%; padding: 12px; background: #1B6E8C; color: #fff; border: none; border-radius: 10px; font-size: 14px; font-weight: 600; cursor: pointer;">Öffnen</button>
-        <p id="gate-error" style="color: #B00020; font-size: 12.5px; margin: 12px 0 0; display: none;">Falsches Passwort.</p>
-      </div>
-    </div>
-    `;
-  }
-
   function buildGroupHTML(projektID, entries) {
+    const isSammel = projektID === SAMMEL_MARKER;
     const landkreis = entries[0].Landkreis || "";
     const antragsnummer = entries[0].Antragsnummer || "";
     const projekttitel = entries[0].Projekttitel || "";
@@ -55,11 +42,27 @@
             <strong style="font-size: 13.5px; color: #16232B;">${escapeHtml(entry.Name)} &middot; ${escapeHtml(entry.Organisation)}</strong>
             <span style="font-size: 12px; color: #8A8377; white-space: nowrap;">${formatDate(entry.Created)}</span>
           </div>
+          ${isSammel && entry.Antragsnummer ? `<p style="font-size: 12.5px; color: #1B6E8C; font-weight: 600; margin: 0 0 6px;">Betrifft: ${escapeHtml(entry.Antragsnummer)}</p>` : ""}
           <p style="font-size: 13.5px; color: #4A4640; line-height: 1.6; margin: 0; white-space: pre-wrap;">${escapeHtml(entry.Anmerkung)}</p>
           ${entry.EMail ? `<p style="font-size: 12px; color: #8A8377; margin: 6px 0 0;">${escapeHtml(entry.EMail)}</p>` : ""}
         </div>
       `;
     }).join("");
+
+    if (isSammel) {
+      return `
+  <div class="feedback-group" data-landkreis="${escapeHtml(landkreis)}" data-sammel="true" style="background: #FFF9F0; border: 1px solid #F0DCB8; border-radius: 14px; padding: 18px 20px; margin-bottom: 16px;">
+    <div style="display: flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap;">
+      <div>
+        <h3 style="font-size: 15px; font-weight: 600; color: #B4790A; margin: 0 0 2px;">Sammelrückmeldung</h3>
+        <p style="font-size: 13px; color: #4A4640; margin: 0;">${escapeHtml(landkreis)}</p>
+      </div>
+      <button class="copy-btn" data-projekt-id="${escapeHtml(projektID)}" style="padding: 6px 12px; background: #B4790A; color: #fff; border: none; border-radius: 8px; font-size: 12px; font-weight: 600; cursor: pointer; flex-shrink: 0;">Kopieren</button>
+    </div>
+    ${entriesHTML}
+  </div>
+  `;
+    }
 
     return `
   <div class="feedback-group" data-landkreis="${escapeHtml(landkreis)}" style="background: #FDFCFA; border: 1px solid #EFEAE0; border-radius: 14px; padding: 18px 20px; margin-bottom: 16px;">
@@ -77,12 +80,19 @@
 
   function buildCopyText(entries) {
     return entries.map(function (entry) {
+      if (entry.Antragsnummer) {
+        return `Betrifft: ${entry.Antragsnummer}\n${entry.Anmerkung}`;
+      }
       return entry.Anmerkung;
     }).join("\n\n---\n\n");
   }
 
   function renderGroups(groupedData, filterLandkreis, container, countEl) {
-    const projektIDs = Object.keys(groupedData).sort();
+    const projektIDs = Object.keys(groupedData).sort(function (a, b) {
+      if (a === SAMMEL_MARKER) return 1;
+      if (b === SAMMEL_MARKER) return -1;
+      return a.localeCompare(b);
+    });
     let visibleCount = 0;
     let html = "";
 
@@ -127,7 +137,7 @@
     root.innerHTML = `
       <div style="max-width: 900px; margin: 0 auto; padding: 36px 24px 60px; box-sizing: border-box;">
         <h1 style="font-size: 22px; font-weight: 600; color: #16232B; margin: 0 0 4px;">Feedback-Übersicht</h1>
-        <p style="font-size: 13px; color: #8A8377; margin: 0 0 20px;">Gruppiert nach Projekt-ID, zum Übertragen in die Arbeitstabelle.</p>
+        <p style="font-size: 13px; color: #8A8377; margin: 0 0 20px;">Gruppiert nach Projekt-ID, zum Übertragen in die Arbeitstabelle. Sammelrückmeldungen erscheinen als letzter Punkt je Landkreis.</p>
         <div style="display: flex; gap: 12px; align-items: center; margin-bottom: 20px; flex-wrap: wrap;">
           <label style="font-size: 13px; font-weight: 600; color: #16232B;">Landkreis:</label>
           <select id="lk-filter" style="padding: 9px 14px; border: 1.5px solid #E8E1D3; border-radius: 10px; font-size: 13.5px; background: #FBFAF7; min-width: 220px;">
@@ -184,26 +194,9 @@
     }
   }
 
-  function initGate() {
-    const root = document.getElementById("app-root");
-    root.innerHTML = buildGateHTML();
-
-    document.getElementById("gate-submit").addEventListener("click", checkPassword);
-    document.getElementById("gate-pw").addEventListener("keypress", function (e) {
-      if (e.key === "Enter") checkPassword();
-    });
-
-    function checkPassword() {
-      const val = document.getElementById("gate-pw").value;
-      if (val === CORRECT_PASSWORD) {
-        loadFeedback(root);
-      } else {
-        document.getElementById("gate-error").style.display = "block";
-      }
-    }
-  }
-
-  document.addEventListener("DOMContentLoaded", initGate);
+  document.addEventListener("DOMContentLoaded", function () {
+    loadFeedback(document.getElementById("app-root"));
+  });
 })();
 </script>
 </body>
