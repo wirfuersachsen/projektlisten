@@ -13,7 +13,7 @@ function ensureInterFont() {
 function buildLogoHeaderHTML() {
   return `
 <div style="display: flex; justify-content: center; margin-bottom: 20px;">
-  <img src="https://projekte.wfs-regionalbeirat.de/assets/wfs-logo-transparenter-hintergrund.png" alt="Wir für Sachsen" style="height: 68px; width: auto; display: block;">
+  <img src="https://projekte.wfs-regionalbeirat.de/assets/wfs-logo-transparenter-hintergrund.png" alt="Wir für Sachsen" style="height: 96px; width: auto; display: block;">
 </div>
 `;
 }
@@ -34,7 +34,7 @@ function buildEmailStepHTML() {
   <div class="icon-badge" style="width: 44px; height: 44px; border-radius: 12px; background: #1B6E8C; display: flex; align-items: center; justify-content: center; margin-bottom: 16px;">
     <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 22px; height: 22px;"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
   </div>
-  <p style="font-size: 12.5px; font-weight: 600; color: #1B6E8C; margin: 0 0 4px; letter-spacing: 0.01em;">Regionalbeirat 2027 &middot; Wir für Sachsen</p>
+  <p style="font-size: 12.5px; font-weight: 600; color: #1B6E8C; margin: 0 0 4px; letter-spacing: 0.01em;">Regionalbeirat 2027</p>
   <h2 style="font-size: 22px; font-weight: 600; color: #16232B; margin: 0 0 12px; letter-spacing: -0.01em;">${REGION_NAME}</h2>
   <p style="font-size: 14px; color: #6B6459; line-height: 1.6; margin: 0 0 28px;">Geben Sie Ihre E-Mail-Adresse ein, um Zugang zur Projektliste dieser Region zu erhalten. Sie erhalten anschließend einen Anmeldecode.</p>
   <input type="email" id="gate-email" placeholder="ihre.email@beispiel.de" style="width: 100%; padding: 13px 16px; border: 1.5px solid #E8E1D3; border-radius: 10px; box-sizing: border-box; font-size: 14px; margin-bottom: 14px; background: #FBFAF7; outline: none;">
@@ -54,7 +54,7 @@ function buildCodeStepHTML(email) {
   <div class="icon-badge" style="width: 44px; height: 44px; border-radius: 12px; background: #1B6E8C; display: flex; align-items: center; justify-content: center; margin-bottom: 16px;">
     <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 22px; height: 22px;"><path d="M22 6 12 13 2 6"/><rect x="2" y="4" width="20" height="16" rx="2"/></svg>
   </div>
-  <p style="font-size: 12.5px; font-weight: 600; color: #1B6E8C; margin: 0 0 4px; letter-spacing: 0.01em;">Regionalbeirat 2027 &middot; Wir für Sachsen</p>
+  <p style="font-size: 12.5px; font-weight: 600; color: #1B6E8C; margin: 0 0 4px; letter-spacing: 0.01em;">Regionalbeirat 2027</p>
   <h2 style="font-size: 22px; font-weight: 600; color: #16232B; margin: 0 0 12px; letter-spacing: -0.01em;">Code eingeben</h2>
   <p style="font-size: 14px; color: #6B6459; line-height: 1.6; margin: 0 0 28px;">Falls die E-Mail-Adresse berechtigt ist, wurde soeben ein Code an <strong style="color: #16232B;">${email}</strong> gesendet. Bitte prüfen Sie auch Ihren Spam-Ordner.</p>
   <input type="text" id="gate-code" placeholder="6-stelliger Code" maxlength="6" style="width: 100%; padding: 13px 16px; border: 1.5px solid #E8E1D3; border-radius: 10px; box-sizing: border-box; font-size: 18px; letter-spacing: 4px; text-align: center; margin-bottom: 14px; background: #FBFAF7; outline: none;">
