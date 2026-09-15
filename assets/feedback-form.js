@@ -13,19 +13,27 @@ function getParam(name) {
   return new URLSearchParams(window.location.search).get(name) || "";
 }
 
+function buildLogoHeaderHTML() {
+  return `
+<div style="display: flex; justify-content: center; margin-bottom: 20px;">
+  <img src="https://projekte.wfs-regionalbeirat.de/assets/wfs-logo-transparenter-hintergrund.png" alt="Wir für Sachsen" style="height: 130px; width: auto; display: block;">
+</div>
+`;
+}
+
 function buildLegalFooterHTML() {
   return `
-  <div class="legal-footer" style="margin-top: 20px; padding-top: 16px; border-top: 1px solid #F0EBE0; text-align: center;">
-    <a href="https://wfs-regionalbeirat.de/datenschutz" target="_blank" rel="noopener" style="font-size: 11.5px; color: #A39C8F; text-decoration: none;">Datenschutz</a>
-    <span style="font-size: 11.5px; color: #D9D3C5; margin: 0 6px;">&middot;</span>
-    <a href="https://buergerstiftung-dresden.de/impressum/" target="_blank" rel="noopener" style="font-size: 11.5px; color: #A39C8F; text-decoration: none;">Impressum</a>
-  </div>
+<div style="margin-top: 16px; text-align: center;">
+  <a href="https://wfs-regionalbeirat.de/datenschutz" target="_blank" rel="noopener" style="font-size: 11.5px; color: #A39C8F; text-decoration: none;">Datenschutz</a>
+  <span style="font-size: 11.5px; color: #D9D3C5; margin: 0 8px;">&middot;</span>
+  <a href="https://buergerstiftung-dresden.de/impressum/" target="_blank" rel="noopener" style="font-size: 11.5px; color: #A39C8F; text-decoration: none;">Impressum</a>
+</div>
 `;
 }
 
 function buildFormHTML(landkreis, projektID, antragsnummer, projekttitel, antragsteller) {
   return `
-<div id="feedback-card" style="max-width: 480px; margin: 0 auto; padding: 32px 28px; box-sizing: border-box; font-family: 'Inter', -apple-system, 'Segoe UI', sans-serif;">
+<div id="feedback-card" style="background: #FDFCFA; border-radius: 20px; box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 12px 32px rgba(0,0,0,0.04); border: 1px solid #EFEAE0; max-width: 480px; width: 100%; margin: 0 auto; padding: 32px 28px; box-sizing: border-box; font-family: 'Inter', -apple-system, 'Segoe UI', sans-serif;">
   <h2 style="font-size: 19px; font-weight: 600; color: #16232B; margin: 0 0 4px;">Feedback zum Bewilligungsvorschlag: "${projekttitel}"</h2>
   <p style="font-size: 13px; color: #8A8377; margin: 0 0 2px;"><strong style="color: #16232B;">Antragsteller:</strong> ${antragsteller}</p>
   <p style="font-size: 13px; color: #8A8377; margin: 0 0 24px;">${landkreis} &middot; Projekt-ID ${projektID} &middot; ${antragsnummer}</p>
@@ -47,7 +55,6 @@ function buildFormHTML(landkreis, projektID, antragsnummer, projekttitel, antrag
 
     <button type="submit" id="fb-submit" style="width: 100%; padding: 13px; background: #1B6E8C; color: #fff; border: none; border-radius: 10px; font-size: 14px; font-weight: 600; font-family: inherit; cursor: pointer;">Absenden</button>
   </form>
-  ${buildLegalFooterHTML()}
 </div>
 `;
 }
@@ -82,6 +89,20 @@ function initFeedbackForm() {
   document.body.style.margin = "0";
   document.body.style.background = "#F5F2EC";
   document.body.style.minHeight = "100vh";
+  document.body.style.display = "flex";
+  document.body.style.alignItems = "center";
+  document.body.style.justifyContent = "center";
+  document.body.style.padding = "20px";
+  document.body.style.boxSizing = "border-box";
+
+  const root = document.createElement("div");
+  root.id = "feedback-root";
+  root.style.display = "flex";
+  root.style.flexDirection = "column";
+  root.style.alignItems = "center";
+  root.style.width = "100%";
+  root.style.maxWidth = "480px";
+  document.body.appendChild(root);
 
   const landkreis = getParam("landkreis");
   const projektID = getParam("projektID");
@@ -89,9 +110,7 @@ function initFeedbackForm() {
   const projekttitel = getParam("projekttitel") || "diesem Projekt";
   const antragsteller = getParam("antragsteller");
 
-  const wrapper = document.createElement("div");
-  wrapper.innerHTML = buildFormHTML(landkreis, projektID, antragsnummer, projekttitel, antragsteller);
-  document.body.appendChild(wrapper.firstElementChild);
+  root.innerHTML = buildLogoHeaderHTML() + buildFormHTML(landkreis, projektID, antragsnummer, projekttitel, antragsteller) + buildLegalFooterHTML();
 
   const form = document.getElementById("feedback-form");
   form.addEventListener("submit", function (e) {
@@ -149,7 +168,7 @@ function initFeedbackForm() {
 }
 
 try {
-  window.resizeTo(520, 640);
+  window.resizeTo(520, 820);
 } catch (e) {
   // resizeTo evtl. vom Browser blockiert - kein Blocker fürs Formular selbst
 }
