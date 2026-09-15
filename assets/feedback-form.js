@@ -1,11 +1,11 @@
 const FLOW_URL = "https://defaultfde3781c593e4916b77b4850b68789.75.environment.api.powerplatform.com:443/powerautomate/automations/direct/cu/11/workflows/d3da7df08f664768a205de8a6c8b108b/triggers/manual/paths/invoke?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=Rm9xPiAwhZ-ZCNN69G2OnutlzfwT1mw8-b5F6vcKUDA";
 
-function ensureInterFont() {
+function ensureFeedbackFonts() {
   if (document.getElementById("feedback-font")) return;
   const link = document.createElement("link");
   link.id = "feedback-font";
   link.rel = "stylesheet";
-  link.href = "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap";
+  link.href = "https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&display=swap";
   document.head.appendChild(link);
 }
 
@@ -26,6 +26,28 @@ function getParam(name) {
   return new URLSearchParams(window.location.search).get(name) || "";
 }
 
+function ensureFeedbackBranding(projekttitel) {
+  document.title = "Feedback zum Bewilligungsvorschlag: " + projekttitel;
+
+  const FAVICON_BASE = "https://projekte.wfs-regionalbeirat.de/assets/favicon/";
+
+  function setLink(rel, href, sizes) {
+    let el = document.querySelector("link[rel='" + rel + "']" + (sizes ? "[sizes='" + sizes + "']" : ""));
+    if (!el) {
+      el = document.createElement("link");
+      el.rel = rel;
+      if (sizes) el.sizes = sizes;
+      document.head.appendChild(el);
+    }
+    el.href = href;
+  }
+
+  setLink("icon", FAVICON_BASE + "favicon.ico");
+  setLink("icon", FAVICON_BASE + "favicon-32x32.png", "32x32");
+  setLink("icon", FAVICON_BASE + "favicon-192x192.png", "192x192");
+  setLink("apple-touch-icon", FAVICON_BASE + "favicon-180x180.png");
+}
+
 function buildLogoHeaderHTML() {
   return `
 <div style="display: flex; justify-content: center; margin-bottom: 20px;">
@@ -36,7 +58,7 @@ function buildLogoHeaderHTML() {
 
 function buildLegalFooterHTML() {
   return `
-<div style="margin-top: 16px; text-align: center; font-family: 'Inter', -apple-system, 'Segoe UI', sans-serif;">
+<div style="margin-top: 16px; text-align: center; font-family: 'Work Sans', -apple-system, 'Segoe UI', sans-serif;">
   <a href="https://wfs-regionalbeirat.de/datenschutz" target="_blank" rel="noopener" style="font-size: 11.5px; color: #A39C8F; text-decoration: none;">Datenschutz</a>
   <span style="font-size: 11.5px; color: #D9D3C5; margin: 0 8px;">&middot;</span>
   <a href="https://buergerstiftung-dresden.de/impressum/" target="_blank" rel="noopener" style="font-size: 11.5px; color: #A39C8F; text-decoration: none;">Impressum</a>
@@ -46,8 +68,12 @@ function buildLegalFooterHTML() {
 
 function buildFormHTML(landkreis, projektID, antragsnummer, projekttitel, antragsteller) {
   return `
-<div id="feedback-card" style="background: #FDFCFA; border-radius: 20px; box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 12px 32px rgba(0,0,0,0.04); border: 1px solid #EFEAE0; max-width: 480px; width: 100%; margin: 0 auto; padding: 32px 28px; box-sizing: border-box; font-family: 'Inter', -apple-system, 'Segoe UI', sans-serif;">
-  <h2 style="font-size: 19px; font-weight: 600; color: #16232B; margin: 0 0 4px;">Feedback zum Bewilligungsvorschlag: "${projekttitel}"</h2>
+<div id="feedback-card" style="background: #FDFCFA; border-radius: 20px; box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 12px 32px rgba(0,0,0,0.04); border: 1px solid #EFEAE0; max-width: 480px; width: 100%; margin: 0 auto; padding: 32px 28px; box-sizing: border-box; font-family: 'Work Sans', -apple-system, 'Segoe UI', sans-serif;">
+  <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 4px;">
+    <div style="width: 4px; height: 14px; background: #E8833A; border-radius: 0;"></div>
+    <p style="font-size: 12.5px; font-weight: 500; color: #1B6E8C; margin: 0; letter-spacing: 0.01em;">Regionalbeirat 2027</p>
+  </div>
+  <h2 style="font-size: 19px; font-weight: 700; color: #16232B; margin: 0 0 4px;">Feedback zum Bewilligungsvorschlag: "${projekttitel}"</h2>
   <p style="font-size: 13px; color: #8A8377; margin: 0 0 2px;"><strong style="color: #16232B;">Antragsteller:</strong> ${antragsteller}</p>
   <p style="font-size: 13px; color: #8A8377; margin: 0 0 24px;">${landkreis} &middot; Projekt-ID ${projektID} &middot; ${antragsnummer}</p>
 
@@ -74,7 +100,7 @@ function buildFormHTML(landkreis, projektID, antragsnummer, projekttitel, antrag
 
 function buildSuccessHTML() {
   return `
-<div style="max-width: 480px; margin: 0 auto; padding: 60px 28px; box-sizing: border-box; font-family: 'Inter', -apple-system, 'Segoe UI', sans-serif; text-align: center;">
+<div style="max-width: 480px; margin: 0 auto; padding: 60px 28px; box-sizing: border-box; font-family: 'Work Sans', -apple-system, 'Segoe UI', sans-serif; text-align: center;">
   <div style="width: 48px; height: 48px; border-radius: 50%; background: #1B6E8C; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px;">
     <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="width: 24px; height: 24px;"><polyline points="20 6 9 17 4 12"/></svg>
   </div>
@@ -97,7 +123,7 @@ function markConfirmationForMainWindow(projektID) {
 }
 
 function initFeedbackForm() {
-  ensureInterFont();
+  ensureFeedbackFonts();
   ensureFeedbackFocusStyles();
 
   document.body.style.margin = "0";
@@ -122,6 +148,7 @@ function initFeedbackForm() {
   const projektID = getParam("projektID");
   const antragsnummer = getParam("antragsnummer");
   const projekttitel = getParam("projekttitel") || "diesem Projekt";
+  ensureFeedbackBranding(projekttitel);
   const antragsteller = getParam("antragsteller");
 
   root.innerHTML = buildLogoHeaderHTML() + buildFormHTML(landkreis, projektID, antragsnummer, projekttitel, antragsteller) + buildLegalFooterHTML();
