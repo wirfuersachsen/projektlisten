@@ -47,6 +47,15 @@ const SECTIONS = [
       { name: "Alle Flows (Übersicht)", desc: "Power Automate Startseite — von hier aus alle Flows erreichbar", url: "https://make.powerautomate.com/environments/default-fde3781c-593e-4916-b77b-4850b6878975/flows" }
     ],
     note: "Flow-Namen zum Wiederfinden: „Beiratsfeedback empfangen“ (Schreiben), „Beiratsfeedback abrufen“ (Lesen), „Beirat Code anfordern“, „Beirat Code prüfen“, „Whitelist aus Anmeldeformular“"
+  },
+  {
+    title: "Infrastruktur & Admin",
+    icon: "🛠️",
+    items: [
+      { name: "Cloudflare", desc: "DNS/Domain-Verwaltung", url: "https://dash.cloudflare.com/f592b3ac2c7f9de17a358523a567e894/home" },
+      { name: "Azure App-Registrierung (Cloudflare)", desc: "Azure AD App-Registrierung für Cloudflare-Zugriff", url: "https://portal.azure.com/#view/Microsoft_AAD_RegisteredApps/ApplicationMenuBlade/~/Overview/quickStartType~/null/sourceType/Microsoft_AAD_IAM/appId/a184a3d9-0cbf-4cff-83ff-b3b959bc2192/objectId/d441db65-5618-474e-b270-df37f95b4616/isMSAApp~/false/defaultBlade/Overview/appSignInAudience/AzureADMyOrg/servicePrincipalCreated~/true" },
+      { name: "SharePoint Admin Center", desc: "Tenant-weite SharePoint-Verwaltung", url: "https://buergerstiftungdresden-admin.sharepoint.com/_layouts/15/online/AdminHome.aspx?modern=true#/home" }
+    ]
   }
 ];
 
