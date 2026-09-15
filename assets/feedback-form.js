@@ -9,6 +9,19 @@ function ensureInterFont() {
   document.head.appendChild(link);
 }
 
+function ensureFeedbackFocusStyles() {
+  if (document.getElementById("feedback-focus-style")) return;
+  const style = document.createElement("style");
+  style.id = "feedback-focus-style";
+  style.textContent = `
+    .fb-input:focus {
+      border-color: #E8833A !important;
+      box-shadow: 0 0 0 3px rgba(232, 131, 58, 0.15);
+    }
+  `;
+  document.head.appendChild(style);
+}
+
 function getParam(name) {
   return new URLSearchParams(window.location.search).get(name) || "";
 }
@@ -39,17 +52,17 @@ function buildFormHTML(landkreis, projektID, antragsnummer, projekttitel, antrag
   <p style="font-size: 13px; color: #8A8377; margin: 0 0 24px;">${landkreis} &middot; Projekt-ID ${projektID} &middot; ${antragsnummer}</p>
 
   <form id="feedback-form">
-    <label style="display: block; font-size: 13px; font-weight: 600; color: #16232B; margin-bottom: 6px;">Name <span style="color: #B00020;">*</span></label>
-    <input type="text" id="fb-name" required style="width: 100%; padding: 11px 14px; border: 1.5px solid #E8E1D3; border-radius: 10px; box-sizing: border-box; font-size: 14px; font-family: inherit; margin-bottom: 16px; background: #FBFAF7; outline: none;">
+    <label style="display: block; font-size: 13px; font-weight: 600; color: #16232B; margin-bottom: 6px;">Name <span style="color: #E8833A;">*</span></label>
+    <input type="text" id="fb-name" class="fb-input" required style="width: 100%; padding: 11px 14px; border: 1.5px solid #E8E1D3; border-radius: 10px; box-sizing: border-box; font-size: 14px; font-family: inherit; margin-bottom: 16px; background: #FBFAF7; outline: none;">
 
-    <label style="display: block; font-size: 13px; font-weight: 600; color: #16232B; margin-bottom: 6px;">Organisation <span style="color: #B00020;">*</span></label>
-    <input type="text" id="fb-organisation" required style="width: 100%; padding: 11px 14px; border: 1.5px solid #E8E1D3; border-radius: 10px; box-sizing: border-box; font-size: 14px; font-family: inherit; margin-bottom: 16px; background: #FBFAF7; outline: none;">
+    <label style="display: block; font-size: 13px; font-weight: 600; color: #16232B; margin-bottom: 6px;">Organisation <span style="color: #E8833A;">*</span></label>
+    <input type="text" id="fb-organisation" class="fb-input" required style="width: 100%; padding: 11px 14px; border: 1.5px solid #E8E1D3; border-radius: 10px; box-sizing: border-box; font-size: 14px; font-family: inherit; margin-bottom: 16px; background: #FBFAF7; outline: none;">
 
     <label style="display: block; font-size: 13px; font-weight: 600; color: #16232B; margin-bottom: 6px;">E-Mail (optional)</label>
-    <input type="email" id="fb-email" style="width: 100%; padding: 11px 14px; border: 1.5px solid #E8E1D3; border-radius: 10px; box-sizing: border-box; font-size: 14px; font-family: inherit; margin-bottom: 16px; background: #FBFAF7; outline: none;">
+    <input type="email" id="fb-email" class="fb-input" style="width: 100%; padding: 11px 14px; border: 1.5px solid #E8E1D3; border-radius: 10px; box-sizing: border-box; font-size: 14px; font-family: inherit; margin-bottom: 16px; background: #FBFAF7; outline: none;">
 
-    <label style="display: block; font-size: 13px; font-weight: 600; color: #16232B; margin-bottom: 6px;">Ihre Anmerkung <span style="color: #B00020;">*</span></label>
-    <textarea id="fb-anmerkung" required rows="5" style="width: 100%; padding: 11px 14px; border: 1.5px solid #E8E1D3; border-radius: 10px; box-sizing: border-box; font-size: 14px; font-family: inherit; margin-bottom: 8px; background: #FBFAF7; outline: none; resize: vertical;"></textarea>
+    <label style="display: block; font-size: 13px; font-weight: 600; color: #16232B; margin-bottom: 6px;">Ihre Anmerkung <span style="color: #E8833A;">*</span></label>
+    <textarea id="fb-anmerkung" class="fb-input" required rows="5" style="width: 100%; padding: 11px 14px; border: 1.5px solid #E8E1D3; border-radius: 10px; box-sizing: border-box; font-size: 14px; font-family: inherit; margin-bottom: 8px; background: #FBFAF7; outline: none; resize: vertical;"></textarea>
 
     <p id="fb-error" style="color: #B00020; font-size: 12.5px; margin: 0 0 12px; display: none;">Bitte füllen Sie alle Pflichtfelder aus.</p>
 
@@ -85,6 +98,7 @@ function markConfirmationForMainWindow(projektID) {
 
 function initFeedbackForm() {
   ensureInterFont();
+  ensureFeedbackFocusStyles();
 
   document.body.style.margin = "0";
   document.body.style.background = "#F5F2EC";
