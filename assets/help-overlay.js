@@ -1,23 +1,23 @@
 function buildHelpOverlayHTML() {
   return `
-<div id="help-overlay-backdrop" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(22, 35, 43, 0.5); z-index: 9998; display: flex; align-items: center; justify-content: center; padding: 20px; box-sizing: border-box; font-family: 'Inter', -apple-system, 'Segoe UI', sans-serif;">
+<div id="help-overlay-backdrop" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(22, 35, 43, 0.5); z-index: 9998; display: flex; align-items: center; justify-content: center; padding: 20px; box-sizing: border-box; font-family: 'Work Sans', -apple-system, 'Segoe UI', sans-serif;">
   <div id="help-overlay-card" style="background: #FDFCFA; border-radius: 20px; max-width: 560px; width: 100%; max-height: 85vh; box-shadow: 0 20px 60px rgba(0,0,0,0.2); box-sizing: border-box; display: flex; flex-direction: column; overflow: hidden;">
     <div style="padding: 36px 32px 20px; overflow-y: auto; flex: 1;">
       <h2 style="font-size: 20px; font-weight: 600; color: #16232B; margin: 0 0 20px; letter-spacing: -0.01em;">Anleitung zur interaktiven Projektliste</h2>
 
-      <h3 style="font-size: 15px; font-weight: 600; color: #1B6E8C; margin: 20px 0 8px; display: flex; align-items: center; gap: 10px;"><span style="display: inline-block; width: 22px; text-align: center; flex-shrink: 0;">🔍</span><span>Suchen und filtern</span></h3>
+      <h3 style="font-size: 15px; font-weight: 600; color: #1B6E8C; margin: 20px 0 8px; display: flex; align-items: center; gap: 10px;"><span style="display: inline-flex; align-items: center; justify-content: center; width: 22px; flex-shrink: 0;"><svg viewBox="0 0 24 24" fill="none" stroke="#1B6E8C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 18px; height: 18px;"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg></span><span>Suchen und filtern</span></h3>
       <p style="font-size: 13.5px; color: #4A4640; line-height: 1.6; margin: 0 0 8px; padding-left: 32px;">Nutzen Sie die Filterfelder oben (Antragsteller, Hauptfokus, Durchführungsort), um die Liste einzugrenzen. In jedem Filterfeld können Sie mehrere Einträge kombinieren.</p>
       <p style="font-size: 13.5px; color: #4A4640; line-height: 1.6; margin: 0 0 16px; padding-left: 32px;">Mit dem Radiergummi-Symbol oben rechts im Filterfeld setzen Sie Ihre Auswahl zurück.</p>
 
-      <h3 style="font-size: 15px; font-weight: 600; color: #1B6E8C; margin: 20px 0 8px; display: flex; align-items: center; gap: 10px;"><span style="display: inline-block; width: 22px; text-align: center; flex-shrink: 0;">📋</span><span>Details ansehen und Feedback geben</span></h3>
+      <h3 style="font-size: 15px; font-weight: 600; color: #1B6E8C; margin: 20px 0 8px; display: flex; align-items: center; gap: 10px;"><span style="display: inline-flex; align-items: center; justify-content: center; width: 22px; flex-shrink: 0;"><svg viewBox="0 0 24 24" fill="none" stroke="#1B6E8C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 18px; height: 18px;"><path d="M9 12h6M9 16h6M9 8h1"/><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg></span><span>Details ansehen und Feedback geben</span></h3>
       <p style="font-size: 13.5px; color: #4A4640; line-height: 1.6; margin: 0 0 8px; padding-left: 32px;">Klicken Sie eine Zeile in der Projektliste an — der Detailbereich darunter zeigt sofort Projektexposé und Regulierungsgründe. Die Angaben stammen unbearbeitet von den Antragstellenden.</p>
       <p style="font-size: 13.5px; color: #4A4640; line-height: 1.6; margin: 0 0 16px; padding-left: 32px;">Für eine Rückmeldung zu einem ausgewählten Projekt nutzen Sie die Feedback-Schaltfläche. Projekt-ID und Titel werden automatisch übernommen.</p>
 
-      <h3 style="font-size: 15px; font-weight: 600; color: #1B6E8C; margin: 20px 0 8px; display: flex; align-items: center; gap: 10px;"><span style="display: inline-block; width: 22px; text-align: center; flex-shrink: 0;">📥</span><span>Excel-Export</span></h3>
+      <h3 style="font-size: 15px; font-weight: 600; color: #1B6E8C; margin: 20px 0 8px; display: flex; align-items: center; gap: 10px;"><span style="display: inline-flex; align-items: center; justify-content: center; width: 22px; flex-shrink: 0;"><svg viewBox="0 0 24 24" fill="none" stroke="#1B6E8C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 18px; height: 18px;"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg></span><span>Excel-Export</span></h3>
       <p style="font-size: 13.5px; color: #4A4640; line-height: 1.6; margin: 0 0 8px; padding-left: 32px;">Über den Download-Button erhalten Sie die komplette Liste Ihrer Region als Excel-Datei, unabhängig von aktiven Filtern.</p>
       <p style="font-size: 13.5px; color: #4A4640; line-height: 1.6; margin: 0 0 16px; padding-left: 32px;"><strong style="color: #16232B;">Achtung:</strong> Diese Datei zeigt den Stand vom 29.12.2026 und wird nicht aktualisiert. Aktuelle Daten finden Sie ausschließlich hier in der interaktiven Liste.</p>
 
-      <p style="font-size: 13.5px; color: #4A4640; line-height: 1.6; margin: 0; display: flex; align-items: center; gap: 10px;"><span style="display: inline-block; width: 22px; text-align: center; flex-shrink: 0;">❔</span><span>Diese Anleitung erreichen Sie jederzeit über den Button unten links.</span></p>
+      <p style="font-size: 13.5px; color: #4A4640; line-height: 1.6; margin: 0; display: flex; align-items: center; gap: 10px;"><span style="display: inline-flex; align-items: center; justify-content: center; width: 22px; flex-shrink: 0;"><svg viewBox="0 0 24 24" fill="none" stroke="#1B6E8C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 18px; height: 18px;"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 0 1 5 0c0 1.5-2.5 2-2.5 3.5"/><path d="M12 17h.01"/></svg></span><span>Diese Anleitung erreichen Sie jederzeit über den Button unten links.</span></p>
     </div>
     <div style="padding: 16px 32px 24px; border-top: 1px solid #F0EBE0;">
       <button id="help-overlay-ok" style="width: 100%; padding: 13px; background: #1B6E8C; color: #fff; border: none; border-radius: 10px; font-size: 14px; font-weight: 600; font-family: inherit; cursor: pointer;">Ok, verstanden</button>
@@ -31,17 +31,42 @@ function handleHelpOverlayKeydown(e) {
   if (e.key === "Escape") closeHelpOverlay();
 }
 
-function ensureInterFont() {
+function ensureHelpOverlayFonts() {
   if (document.getElementById("help-overlay-font")) return;
-  const link = document.createElement("link");
-  link.id = "help-overlay-font";
-  link.rel = "stylesheet";
-  link.href = "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap";
-  document.head.appendChild(link);
+  const FONT_BASE = "https://projekte.wfs-regionalbeirat.de/assets/fonts/";
+  const style = document.createElement("style");
+  style.id = "help-overlay-font";
+  style.textContent = `
+    @font-face {
+      font-family: 'Work Sans';
+      src: url('${FONT_BASE}work-sans-400.woff2') format('woff2');
+      font-weight: 400;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Work Sans';
+      src: url('${FONT_BASE}work-sans-500.woff2') format('woff2');
+      font-weight: 500;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Work Sans';
+      src: url('${FONT_BASE}work-sans-600.woff2') format('woff2');
+      font-weight: 600;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Work Sans';
+      src: url('${FONT_BASE}work-sans-700.woff2') format('woff2');
+      font-weight: 700;
+      font-display: swap;
+    }
+  `;
+  document.head.appendChild(style);
 }
 
 function showHelpOverlay() {
-  ensureInterFont();
+  ensureHelpOverlayFonts();
   if (document.getElementById("help-overlay-backdrop")) return;
   const wrapper = document.createElement("div");
   wrapper.innerHTML = buildHelpOverlayHTML();
@@ -67,7 +92,7 @@ function initHelpButton() {
   const btn = document.createElement("button");
   btn.setAttribute("aria-label", "Hilfe anzeigen");
   btn.innerHTML = "?";
-  btn.style.cssText = "position: fixed; bottom: 64px; left: 76px; width: 48px; height: 48px; border-radius: 50%; background: #1B6E8C; color: #fff; border: none; font-size: 18px; font-weight: 700; font-family: 'Inter', -apple-system, 'Segoe UI', sans-serif; cursor: pointer; box-shadow: 0 2px 8px rgba(0,0,0,0.15); z-index: 9997;";
+  btn.style.cssText = "position: fixed; bottom: 64px; left: 76px; width: 48px; height: 48px; border-radius: 50%; background: #1B6E8C; color: #fff; border: none; font-size: 18px; font-weight: 700; font-family: 'Work Sans', -apple-system, 'Segoe UI', sans-serif; cursor: pointer; box-shadow: 0 2px 8px rgba(0,0,0,0.15); z-index: 9997;";
   btn.addEventListener("click", showHelpOverlay);
   document.body.appendChild(btn);
 }
@@ -95,7 +120,7 @@ function initPdfButton() {
   const btn = document.createElement("button");
   btn.setAttribute("aria-label", "Rückmeldungs-PDF herunterladen");
   btn.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" style="width: 15px; height: 15px; flex-shrink: 0;"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M12 12v6"/><path d="m9.5 15.5 2.5 2.5 2.5-2.5"/></svg><span>Rückmeldungs-PDF</span>`;
-  btn.style.cssText = "position: fixed; bottom: 122px; left: 20px; height: 34px; padding: 0 14px; border-radius: 17px; background: #E8833A; color: #fff; border: none; display: flex; align-items: center; gap: 7px; font-family: 'Inter', -apple-system, 'Segoe UI', sans-serif; font-size: 12.5px; font-weight: 600; cursor: pointer; box-shadow: 0 2px 8px rgba(0,0,0,0.15); z-index: 9997; white-space: nowrap;";
+  btn.style.cssText = "position: fixed; bottom: 122px; left: 20px; height: 34px; padding: 0 14px; border-radius: 17px; background: #E8833A; color: #fff; border: none; display: flex; align-items: center; gap: 7px; font-family: 'Work Sans', -apple-system, 'Segoe UI', sans-serif; font-size: 12.5px; font-weight: 600; cursor: pointer; box-shadow: 0 2px 8px rgba(0,0,0,0.15); z-index: 9997; white-space: nowrap;";
   btn.addEventListener("click", function () {
     window.open(url, "_blank");
   });
