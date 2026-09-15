@@ -3,11 +3,36 @@ const CHECK_CODE_URL = "https://defaultfde3781c593e4916b77b4850b68789.75.environ
 
 function ensureGateFonts() {
   if (document.getElementById("gate-font")) return;
-  const link = document.createElement("link");
-  link.id = "gate-font";
-  link.rel = "stylesheet";
-  link.href = "https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&display=swap";
-  document.head.appendChild(link);
+  const FONT_BASE = "https://projekte.wfs-regionalbeirat.de/assets/fonts/";
+  const style = document.createElement("style");
+  style.id = "gate-font";
+  style.textContent = `
+    @font-face {
+      font-family: 'Work Sans';
+      src: url('${FONT_BASE}work-sans-400.woff2') format('woff2');
+      font-weight: 400;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Work Sans';
+      src: url('${FONT_BASE}work-sans-500.woff2') format('woff2');
+      font-weight: 500;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Work Sans';
+      src: url('${FONT_BASE}work-sans-600.woff2') format('woff2');
+      font-weight: 600;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Work Sans';
+      src: url('${FONT_BASE}work-sans-700.woff2') format('woff2');
+      font-weight: 700;
+      font-display: swap;
+    }
+  `;
+  document.head.appendChild(style);
 }
 
 function ensureGateFocusStyles() {
