@@ -10,6 +10,16 @@ function ensureInterFont() {
   document.head.appendChild(link);
 }
 
+function buildLegalFooterHTML() {
+  return `
+  <div class="legal-footer" style="margin-top: 16px; text-align: center;">
+    <a href="https://wfs-regionalbeirat.de/datenschutz" target="_blank" rel="noopener" style="font-size: 11.5px; color: #A39C8F; text-decoration: none;">Datenschutz</a>
+    <span style="font-size: 11.5px; color: #D9D3C5; margin: 0 6px;">&middot;</span>
+    <a href="https://buergerstiftung-dresden.de/impressum/" target="_blank" rel="noopener" style="font-size: 11.5px; color: #A39C8F; text-decoration: none;">Impressum</a>
+  </div>
+`;
+}
+
 function buildEmailStepHTML() {
   return `
 <div id="gate-card" style="background: #FDFCFA; border-radius: 20px; padding: 44px 36px; box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 12px 32px rgba(0,0,0,0.04); border: 1px solid #EFEAE0; max-width: 420px; width: 100%; box-sizing: border-box;">
@@ -25,6 +35,7 @@ function buildEmailStepHTML() {
     <svg viewBox="0 0 24 24" fill="none" stroke="#1B6E8C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0; margin-top: 1px; width: 16px; height: 16px;"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/></svg>
     <p style="font-size: 12px; color: #8A8377; line-height: 1.5; margin: 0;"><strong style="color: #5A5348;">Vertrauliche Informationen.</strong> Nur für Mitglieder des Beirats bestimmt.</p>
   </div>
+  ${buildLegalFooterHTML()}
 </div>
 `;
 }
@@ -40,6 +51,7 @@ function buildCodeStepHTML(email) {
   <input type="text" id="gate-code" placeholder="6-stelliger Code" maxlength="6" style="width: 100%; padding: 13px 16px; border: 1.5px solid #E8E1D3; border-radius: 10px; box-sizing: border-box; font-size: 18px; letter-spacing: 4px; text-align: center; margin-bottom: 14px; background: #FBFAF7; outline: none;">
   <button id="gate-verify-btn" style="width: 100%; padding: 13px; background: #1B6E8C; color: #fff; border: none; border-radius: 10px; font-size: 14px; font-weight: 600; cursor: pointer;">Bestätigen</button>
   <p id="gate-code-error" style="color: #B00020; font-size: 12.5px; margin: 12px 0 0; display: none;">Der Code ist ungültig oder abgelaufen. Bitte laden Sie die Seite neu, um einen neuen Code anzufordern.</p>
+  ${buildLegalFooterHTML()}
 </div>
 `;
 }
