@@ -4,8 +4,31 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Feedback-Übersicht (intern)</title>
+<style>
+  @font-face {
+    font-family: 'Work Sans';
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+    src: url('https://projekte.wfs-regionalbeirat.de/assets/fonts/work-sans-400.woff2') format('woff2');
+  }
+  @font-face {
+    font-family: 'Work Sans';
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+    src: url('https://projekte.wfs-regionalbeirat.de/assets/fonts/work-sans-600.woff2') format('woff2');
+  }
+  @font-face {
+    font-family: 'Work Sans';
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+    src: url('https://projekte.wfs-regionalbeirat.de/assets/fonts/work-sans-700.woff2') format('woff2');
+  }
+</style>
 </head>
-<body style="margin: 0; background: #F5F2EC; font-family: 'Segoe UI', -apple-system, sans-serif;">
+<body style="margin: 0; background: #FDFCFA; font-family: 'Work Sans', -apple-system, sans-serif;">
 <div id="app-root"></div>
 <script>
 (function() {
@@ -37,12 +60,12 @@
 
     const entriesHTML = entries.map(function (entry) {
       return `
-        <div style="padding: 14px 0; border-top: 1px solid #F0EBE0;">
+        <div style="padding: 14px 0; border-top: 1px solid #EFEAE0;">
           <div style="display: flex; justify-content: space-between; gap: 12px; margin-bottom: 6px; flex-wrap: wrap;">
             <strong style="font-size: 13.5px; color: #16232B;">${escapeHtml(entry.Name)} &middot; ${escapeHtml(entry.Organisation)}</strong>
             <span style="font-size: 12px; color: #8A8377; white-space: nowrap;">${formatDate(entry.Created)}</span>
           </div>
-          ${isSammel && entry.Antragsnummer ? `<p style="font-size: 12.5px; color: #1B6E8C; font-weight: 600; margin: 0 0 6px;">Betrifft: ${escapeHtml(entry.Antragsnummer)}</p>` : ""}
+          ${isSammel && entry.Antragsnummer ? `<p style="font-size: 12.5px; color: #E8833A; font-weight: 600; margin: 0 0 6px;">Betrifft: ${escapeHtml(entry.Antragsnummer)}</p>` : ""}
           <p style="font-size: 13.5px; color: #4A4640; line-height: 1.6; margin: 0; white-space: pre-wrap;">${escapeHtml(entry.Anmerkung)}</p>
           ${entry.EMail ? `<p style="font-size: 12px; color: #8A8377; margin: 6px 0 0;">${escapeHtml(entry.EMail)}</p>` : ""}
         </div>
@@ -51,24 +74,24 @@
 
     if (isSammel) {
       return `
-  <div class="feedback-group" data-landkreis="${escapeHtml(landkreis)}" data-sammel="true" style="position: relative; background: #FFF9F0; border: 1px solid #F0DCB8; border-radius: 14px; padding: 18px 90px 18px 20px;">
+  <div class="feedback-group" data-landkreis="${escapeHtml(landkreis)}" data-sammel="true" style="position: relative; background: #FDF4EC; border: 1px solid #F3D3B4; border-radius: 14px; padding: 18px 90px 18px 20px;">
     <div>
-      <h3 style="font-size: 15px; font-weight: 600; color: #B4790A; margin: 0 0 2px;">Sammelrückmeldung</h3>
+      <h3 style="font-size: 15px; font-weight: 600; color: #C96A26; margin: 0 0 2px;">Sammelrückmeldung</h3>
       <p style="font-size: 13px; color: #4A4640; margin: 0;">${escapeHtml(landkreis)}</p>
     </div>
-    <button class="copy-btn" data-projekt-id="${escapeHtml(groupKey)}" title="Kopiert den Anmerkungstext" style="position: absolute; top: 18px; right: 20px; padding: 6px 12px; background: #B4790A; color: #fff; border: none; border-radius: 8px; font-size: 12px; font-weight: 600; cursor: pointer;">Anmerkung kopieren</button>
+    <button class="copy-btn" data-projekt-id="${escapeHtml(groupKey)}" title="Kopiert den Anmerkungstext" style="position: absolute; top: 18px; right: 20px; padding: 6px 12px; background: #E8833A; color: #fff; border: none; border-radius: 8px; font-size: 12px; font-weight: 600; cursor: pointer; font-family: 'Work Sans', sans-serif;">Anmerkung kopieren</button>
     ${entriesHTML}
   </div>
   `;
     }
 
     return `
-  <div class="feedback-group" data-landkreis="${escapeHtml(landkreis)}" style="position: relative; background: #FDFCFA; border: 1px solid #EFEAE0; border-radius: 14px; padding: 18px 90px 18px 20px;">
+  <div class="feedback-group" data-landkreis="${escapeHtml(landkreis)}" style="position: relative; background: #FFFFFF; border: 1px solid #E8E1D3; border-radius: 14px; padding: 18px 90px 18px 20px;">
     <div>
       <h3 style="font-size: 15px; font-weight: 600; color: #1B6E8C; margin: 0 0 2px;">Projekt-ID ${escapeHtml(groupKey)}</h3>
       <p style="font-size: 13px; color: #4A4640; margin: 0;"><strong>${escapeHtml(projekttitel)}</strong> &middot; ${escapeHtml(antragsteller)} &middot; ${escapeHtml(landkreis)} &middot; ${escapeHtml(antragsnummer)}</p>
     </div>
-    <button class="copy-btn" data-projekt-id="${escapeHtml(groupKey)}" title="Kopiert den Anmerkungstext" style="position: absolute; top: 18px; right: 20px; padding: 6px 12px; background: #1B6E8C; color: #fff; border: none; border-radius: 8px; font-size: 12px; font-weight: 600; cursor: pointer;">Anmerkung kopieren</button>
+    <button class="copy-btn" data-projekt-id="${escapeHtml(groupKey)}" title="Kopiert den Anmerkungstext" style="position: absolute; top: 18px; right: 20px; padding: 6px 12px; background: #1B6E8C; color: #fff; border: none; border-radius: 8px; font-size: 12px; font-weight: 600; cursor: pointer; font-family: 'Work Sans', sans-serif;">Anmerkung kopieren</button>
     ${entriesHTML}
   </div>
   `;
@@ -149,11 +172,11 @@
   async function loadFeedback(root) {
     root.innerHTML = `
       <div style="max-width: 900px; margin: 0 auto; padding: 36px 24px 60px; box-sizing: border-box;">
-        <h1 style="font-size: 22px; font-weight: 600; color: #16232B; margin: 0 0 4px;">Feedback-Übersicht</h1>
+        <h1 style="font-size: 22px; font-weight: 700; color: #1B6E8C; margin: 0 0 4px;">Feedback-Übersicht</h1>
         <p style="font-size: 13px; color: #8A8377; margin: 0 0 20px;">Gruppiert nach Projekt-ID, zum Übertragen in die Arbeitstabelle. Sammelrückmeldungen erscheinen als letzter Punkt je Landkreis.</p>
         <div style="display: flex; gap: 12px; align-items: center; margin-bottom: 20px; flex-wrap: wrap;">
           <label style="font-size: 13px; font-weight: 600; color: #16232B;">Landkreis:</label>
-          <select id="lk-filter" style="padding: 9px 14px; border: 1.5px solid #E8E1D3; border-radius: 10px; font-size: 13.5px; background: #FBFAF7; min-width: 220px;">
+          <select id="lk-filter" style="padding: 9px 14px; border: 1.5px solid #E8E1D3; border-radius: 10px; font-size: 13.5px; background: #FFFFFF; min-width: 220px; font-family: 'Work Sans', sans-serif; color: #16232B;">
             <option value="">Alle Landkreise</option>
           </select>
           <span id="result-count" style="font-size: 13px; color: #8A8377; margin-left: auto;"></span>
