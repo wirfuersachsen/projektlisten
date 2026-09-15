@@ -10,19 +10,27 @@ function ensureInterFont() {
   document.head.appendChild(link);
 }
 
+function buildLogoHeaderHTML() {
+  return `
+<div id="gate-header" style="background: #FDFCFA; border: 1px solid #EFEAE0; border-radius: 12px 12px 0 0; padding: 16px 24px; display: flex; align-items: center; justify-content: center; max-width: 420px; width: 100%; box-sizing: border-box;">
+  <img src="https://projekte.wfs-regionalbeirat.de/assets/wfs-logo-transparenter-hintergrund.png" alt="Wir für Sachsen – Das sächsische Ehrenamtsförderprogramm" style="height: 52px; width: auto; display: block;">
+</div>
+`;
+}
+
 function buildLegalFooterHTML() {
   return `
-  <div class="legal-footer" style="margin-top: 16px; text-align: center;">
-    <a href="https://wfs-regionalbeirat.de/datenschutz" target="_blank" rel="noopener" style="font-size: 11.5px; color: #A39C8F; text-decoration: none;">Datenschutz</a>
-    <span style="font-size: 11.5px; color: #D9D3C5; margin: 0 6px;">&middot;</span>
-    <a href="https://buergerstiftung-dresden.de/impressum/" target="_blank" rel="noopener" style="font-size: 11.5px; color: #A39C8F; text-decoration: none;">Impressum</a>
-  </div>
+<div id="gate-legal-footer" style="background: #F5F2EC; border: 1px solid #EFEAE0; border-top: none; border-radius: 0 0 12px 12px; padding: 14px 24px; text-align: center; max-width: 420px; width: 100%; box-sizing: border-box;">
+  <a href="https://wfs-regionalbeirat.de/datenschutz" target="_blank" rel="noopener" style="font-size: 11.5px; color: #A39C8F; text-decoration: none;">Datenschutz</a>
+  <span style="font-size: 11.5px; color: #D9D3C5; margin: 0 8px;">&middot;</span>
+  <a href="https://buergerstiftung-dresden.de/impressum/" target="_blank" rel="noopener" style="font-size: 11.5px; color: #A39C8F; text-decoration: none;">Impressum</a>
+</div>
 `;
 }
 
 function buildEmailStepHTML() {
   return `
-<div id="gate-card" style="background: #FDFCFA; border-radius: 20px; padding: 44px 36px; box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 12px 32px rgba(0,0,0,0.04); border: 1px solid #EFEAE0; max-width: 420px; width: 100%; box-sizing: border-box;">
+<div id="gate-card" style="background: #FDFCFA; border-radius: 0; padding: 32px 36px; box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 12px 32px rgba(0,0,0,0.04); border: 1px solid #EFEAE0; border-top: none; border-bottom: none; max-width: 420px; width: 100%; box-sizing: border-box;">
   <div class="icon-badge" style="width: 44px; height: 44px; border-radius: 12px; background: #1B6E8C; display: flex; align-items: center; justify-content: center; margin-bottom: 24px;">
     <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 22px; height: 22px;"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
   </div>
@@ -35,14 +43,13 @@ function buildEmailStepHTML() {
     <svg viewBox="0 0 24 24" fill="none" stroke="#1B6E8C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0; margin-top: 1px; width: 16px; height: 16px;"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/></svg>
     <p style="font-size: 12px; color: #8A8377; line-height: 1.5; margin: 0;"><strong style="color: #5A5348;">Vertrauliche Informationen.</strong> Nur für Mitglieder des Beirats bestimmt.</p>
   </div>
-  ${buildLegalFooterHTML()}
 </div>
 `;
 }
 
 function buildCodeStepHTML(email) {
   return `
-<div id="gate-card" style="background: #FDFCFA; border-radius: 20px; padding: 44px 36px; box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 12px 32px rgba(0,0,0,0.04); border: 1px solid #EFEAE0; max-width: 420px; width: 100%; box-sizing: border-box;">
+<div id="gate-card" style="background: #FDFCFA; border-radius: 0; padding: 32px 36px; box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 12px 32px rgba(0,0,0,0.04); border: 1px solid #EFEAE0; border-top: none; border-bottom: none; max-width: 420px; width: 100%; box-sizing: border-box;">
   <div class="icon-badge" style="width: 44px; height: 44px; border-radius: 12px; background: #1B6E8C; display: flex; align-items: center; justify-content: center; margin-bottom: 24px;">
     <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 22px; height: 22px;"><path d="M22 6 12 13 2 6"/><rect x="2" y="4" width="20" height="16" rx="2"/></svg>
   </div>
@@ -51,14 +58,13 @@ function buildCodeStepHTML(email) {
   <input type="text" id="gate-code" placeholder="6-stelliger Code" maxlength="6" style="width: 100%; padding: 13px 16px; border: 1.5px solid #E8E1D3; border-radius: 10px; box-sizing: border-box; font-size: 18px; letter-spacing: 4px; text-align: center; margin-bottom: 14px; background: #FBFAF7; outline: none;">
   <button id="gate-verify-btn" style="width: 100%; padding: 13px; background: #1B6E8C; color: #fff; border: none; border-radius: 10px; font-size: 14px; font-weight: 600; cursor: pointer;">Bestätigen</button>
   <p id="gate-code-error" style="color: #B00020; font-size: 12.5px; margin: 12px 0 0; display: none;">Der Code ist ungültig oder abgelaufen. Bitte laden Sie die Seite neu, um einen neuen Code anzufordern.</p>
-  ${buildLegalFooterHTML()}
 </div>
 `;
 }
 
 function showEmailStep() {
   const root = document.getElementById("gate-root");
-  root.innerHTML = buildEmailStepHTML();
+  root.innerHTML = buildLogoHeaderHTML() + buildEmailStepHTML() + buildLegalFooterHTML();
 
   const emailInput = document.getElementById("gate-email");
   const errorEl = document.getElementById("gate-email-error");
@@ -98,7 +104,7 @@ function showEmailStep() {
 
 function showCodeStep(email) {
   const root = document.getElementById("gate-root");
-  root.innerHTML = buildCodeStepHTML(email);
+  root.innerHTML = buildLogoHeaderHTML() + buildCodeStepHTML(email) + buildLegalFooterHTML();
 
   const codeInput = document.getElementById("gate-code");
   const errorEl = document.getElementById("gate-code-error");
@@ -166,6 +172,11 @@ function initGate() {
 
   const root = document.createElement("div");
   root.id = "gate-root";
+  root.style.display = "flex";
+  root.style.flexDirection = "column";
+  root.style.alignItems = "center";
+  root.style.width = "100%";
+  root.style.maxWidth = "420px";
   document.body.appendChild(root);
 
   showEmailStep();
