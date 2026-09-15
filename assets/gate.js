@@ -1,12 +1,12 @@
 const REQUEST_CODE_URL = "https://defaultfde3781c593e4916b77b4850b68789.75.environment.api.powerplatform.com:443/powerautomate/automations/direct/cu/15/workflows/04a44095f7714df89eb36184bd1e8fff/triggers/manual/paths/invoke?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=chVN6m6VqWPJTZhFkKaGcBBA5bPxi3UoInOFNPdy3kA";
 const CHECK_CODE_URL = "https://defaultfde3781c593e4916b77b4850b68789.75.environment.api.powerplatform.com:443/powerautomate/automations/direct/cu/03/workflows/5928b320517f41dc89fd2ac427154432/triggers/manual/paths/invoke?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=BRWaZN0kH0QyYXdGaKAXyjfTalXI5Jm7DOiy6I9Mpsk";
 
-function ensureInterFont() {
+function ensureGateFonts() {
   if (document.getElementById("gate-font")) return;
   const link = document.createElement("link");
   link.id = "gate-font";
   link.rel = "stylesheet";
-  link.href = "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap";
+  link.href = "https://fonts.googleapis.com/css2?family=Lora:wght@600;700&family=Work+Sans:wght@400;500;600&display=swap";
   document.head.appendChild(link);
 }
 
@@ -34,8 +34,11 @@ function buildEmailStepHTML() {
   <div class="icon-badge" style="width: 44px; height: 44px; border-radius: 12px; background: #1B6E8C; display: flex; align-items: center; justify-content: center; margin-bottom: 16px;">
     <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 22px; height: 22px;"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
   </div>
-  <p style="font-size: 12.5px; font-weight: 600; color: #1B6E8C; margin: 0 0 4px; letter-spacing: 0.01em;">Regionalbeirat 2027</p>
-  <h2 style="font-size: 22px; font-weight: 600; color: #16232B; margin: 0 0 12px; letter-spacing: -0.01em;">${REGION_NAME}</h2>
+  <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 4px;">
+    <div style="width: 4px; height: 14px; background: #E8833A; border-radius: 0;"></div>
+    <p style="font-size: 12.5px; font-weight: 500; color: #1B6E8C; margin: 0; letter-spacing: 0.01em;">Regionalbeirat 2027</p>
+  </div>
+  <h2 style="font-family: 'Lora', serif; font-size: 24px; font-weight: 700; color: #16232B; margin: 0 0 12px; letter-spacing: -0.01em;">${REGION_NAME}</h2>
   <p style="font-size: 14px; color: #6B6459; line-height: 1.6; margin: 0 0 28px;">Geben Sie Ihre E-Mail-Adresse ein, um Zugang zur Projektliste dieser Region zu erhalten. Sie erhalten anschließend einen Anmeldecode.</p>
   <input type="email" id="gate-email" placeholder="ihre.email@beispiel.de" style="width: 100%; padding: 13px 16px; border: 1.5px solid #E8E1D3; border-radius: 10px; box-sizing: border-box; font-size: 14px; margin-bottom: 14px; background: #FBFAF7; outline: none;">
   <button id="gate-request-btn" style="width: 100%; padding: 13px; background: #1B6E8C; color: #fff; border: none; border-radius: 10px; font-size: 14px; font-weight: 600; cursor: pointer;">Code anfordern</button>
@@ -54,8 +57,11 @@ function buildCodeStepHTML(email) {
   <div class="icon-badge" style="width: 44px; height: 44px; border-radius: 12px; background: #1B6E8C; display: flex; align-items: center; justify-content: center; margin-bottom: 16px;">
     <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 22px; height: 22px;"><path d="M22 6 12 13 2 6"/><rect x="2" y="4" width="20" height="16" rx="2"/></svg>
   </div>
-  <p style="font-size: 12.5px; font-weight: 600; color: #1B6E8C; margin: 0 0 4px; letter-spacing: 0.01em;">Regionalbeirat 2027</p>
-  <h2 style="font-size: 22px; font-weight: 600; color: #16232B; margin: 0 0 12px; letter-spacing: -0.01em;">Code eingeben</h2>
+  <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 4px;">
+    <div style="width: 4px; height: 14px; background: #E8833A; border-radius: 0;"></div>
+    <p style="font-size: 12.5px; font-weight: 500; color: #1B6E8C; margin: 0; letter-spacing: 0.01em;">Regionalbeirat 2027</p>
+  </div>
+  <h2 style="font-family: 'Lora', serif; font-size: 24px; font-weight: 700; color: #16232B; margin: 0 0 12px; letter-spacing: -0.01em;">Code eingeben</h2>
   <p style="font-size: 14px; color: #6B6459; line-height: 1.6; margin: 0 0 28px;">Falls die E-Mail-Adresse berechtigt ist, wurde soeben ein Code an <strong style="color: #16232B;">${email}</strong> gesendet. Bitte prüfen Sie auch Ihren Spam-Ordner.</p>
   <input type="text" id="gate-code" placeholder="6-stelliger Code" maxlength="6" style="width: 100%; padding: 13px 16px; border: 1.5px solid #E8E1D3; border-radius: 10px; box-sizing: border-box; font-size: 18px; letter-spacing: 4px; text-align: center; margin-bottom: 14px; background: #FBFAF7; outline: none;">
   <button id="gate-verify-btn" style="width: 100%; padding: 13px; background: #1B6E8C; color: #fff; border: none; border-radius: 10px; font-size: 14px; font-weight: 600; cursor: pointer;">Bestätigen</button>
@@ -160,7 +166,7 @@ function showCodeStep(email) {
 }
 
 function initGate() {
-  ensureInterFont();
+  ensureGateFonts();
 
   document.body.style.margin = "0";
   document.body.style.background = "#F5F2EC";
@@ -170,7 +176,7 @@ function initGate() {
   document.body.style.justifyContent = "center";
   document.body.style.padding = "20px";
   document.body.style.boxSizing = "border-box";
-  document.body.style.fontFamily = "'Inter', -apple-system, 'Segoe UI', sans-serif";
+  document.body.style.fontFamily = "'Work Sans', -apple-system, 'Segoe UI', sans-serif";
 
   const root = document.createElement("div");
   root.id = "gate-root";
