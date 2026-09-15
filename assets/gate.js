@@ -12,15 +12,15 @@ function ensureInterFont() {
 
 function buildLogoHeaderHTML() {
   return `
-<div id="gate-header" style="background: #FDFCFA; border: 1px solid #EFEAE0; border-radius: 12px 12px 0 0; padding: 16px 24px; display: flex; align-items: center; justify-content: center; max-width: 420px; width: 100%; box-sizing: border-box;">
-  <img src="https://projekte.wfs-regionalbeirat.de/assets/wfs-logo-transparenter-hintergrund.png" alt="Wir für Sachsen – Das sächsische Ehrenamtsförderprogramm" style="height: 52px; width: auto; display: block;">
+<div style="display: flex; justify-content: center; margin-bottom: 20px;">
+  <img src="https://projekte.wfs-regionalbeirat.de/assets/wfs-logo-transparenter-hintergrund.png" alt="Wir für Sachsen" style="height: 68px; width: auto; display: block;">
 </div>
 `;
 }
 
 function buildLegalFooterHTML() {
   return `
-<div id="gate-legal-footer" style="background: #F5F2EC; border: 1px solid #EFEAE0; border-top: none; border-radius: 0 0 12px 12px; padding: 14px 24px; text-align: center; max-width: 420px; width: 100%; box-sizing: border-box;">
+<div style="margin-top: 16px; text-align: center;">
   <a href="https://wfs-regionalbeirat.de/datenschutz" target="_blank" rel="noopener" style="font-size: 11.5px; color: #A39C8F; text-decoration: none;">Datenschutz</a>
   <span style="font-size: 11.5px; color: #D9D3C5; margin: 0 8px;">&middot;</span>
   <a href="https://buergerstiftung-dresden.de/impressum/" target="_blank" rel="noopener" style="font-size: 11.5px; color: #A39C8F; text-decoration: none;">Impressum</a>
@@ -30,12 +30,13 @@ function buildLegalFooterHTML() {
 
 function buildEmailStepHTML() {
   return `
-<div id="gate-card" style="background: #FDFCFA; border-radius: 0; padding: 32px 36px; box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 12px 32px rgba(0,0,0,0.04); border: 1px solid #EFEAE0; border-top: none; border-bottom: none; max-width: 420px; width: 100%; box-sizing: border-box;">
-  <div class="icon-badge" style="width: 44px; height: 44px; border-radius: 12px; background: #1B6E8C; display: flex; align-items: center; justify-content: center; margin-bottom: 24px;">
+<div id="gate-card" style="background: #FDFCFA; border-radius: 20px; padding: 32px 36px; box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 12px 32px rgba(0,0,0,0.04); border: 1px solid #EFEAE0; max-width: 420px; width: 100%; box-sizing: border-box;">
+  <div class="icon-badge" style="width: 44px; height: 44px; border-radius: 12px; background: #1B6E8C; display: flex; align-items: center; justify-content: center; margin-bottom: 16px;">
     <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 22px; height: 22px;"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
   </div>
-  <h2 style="font-size: 22px; font-weight: 600; color: #16232B; margin: 0 0 8px; letter-spacing: -0.01em;">${REGION_NAME}</h2>
-  <p style="font-size: 14px; color: #6B6459; line-height: 1.6; margin: 0 0 28px;">Bitte geben Sie Ihre E-Mail-Adresse ein. Sie erhalten anschließend einen Anmeldecode.</p>
+  <p style="font-size: 12.5px; font-weight: 600; color: #1B6E8C; margin: 0 0 4px; letter-spacing: 0.01em;">Regionalbeirat 2027 &middot; Wir für Sachsen</p>
+  <h2 style="font-size: 22px; font-weight: 600; color: #16232B; margin: 0 0 12px; letter-spacing: -0.01em;">${REGION_NAME}</h2>
+  <p style="font-size: 14px; color: #6B6459; line-height: 1.6; margin: 0 0 28px;">Geben Sie Ihre E-Mail-Adresse ein, um Zugang zur Projektliste dieser Region zu erhalten. Sie erhalten anschließend einen Anmeldecode.</p>
   <input type="email" id="gate-email" placeholder="ihre.email@beispiel.de" style="width: 100%; padding: 13px 16px; border: 1.5px solid #E8E1D3; border-radius: 10px; box-sizing: border-box; font-size: 14px; margin-bottom: 14px; background: #FBFAF7; outline: none;">
   <button id="gate-request-btn" style="width: 100%; padding: 13px; background: #1B6E8C; color: #fff; border: none; border-radius: 10px; font-size: 14px; font-weight: 600; cursor: pointer;">Code anfordern</button>
   <p id="gate-email-error" style="color: #B00020; font-size: 12.5px; margin: 12px 0 0; display: none;">Bitte geben Sie eine gültige E-Mail-Adresse ein.</p>
@@ -49,11 +50,12 @@ function buildEmailStepHTML() {
 
 function buildCodeStepHTML(email) {
   return `
-<div id="gate-card" style="background: #FDFCFA; border-radius: 0; padding: 32px 36px; box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 12px 32px rgba(0,0,0,0.04); border: 1px solid #EFEAE0; border-top: none; border-bottom: none; max-width: 420px; width: 100%; box-sizing: border-box;">
-  <div class="icon-badge" style="width: 44px; height: 44px; border-radius: 12px; background: #1B6E8C; display: flex; align-items: center; justify-content: center; margin-bottom: 24px;">
+<div id="gate-card" style="background: #FDFCFA; border-radius: 20px; padding: 32px 36px; box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 12px 32px rgba(0,0,0,0.04); border: 1px solid #EFEAE0; max-width: 420px; width: 100%; box-sizing: border-box;">
+  <div class="icon-badge" style="width: 44px; height: 44px; border-radius: 12px; background: #1B6E8C; display: flex; align-items: center; justify-content: center; margin-bottom: 16px;">
     <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 22px; height: 22px;"><path d="M22 6 12 13 2 6"/><rect x="2" y="4" width="20" height="16" rx="2"/></svg>
   </div>
-  <h2 style="font-size: 22px; font-weight: 600; color: #16232B; margin: 0 0 8px; letter-spacing: -0.01em;">Code eingeben</h2>
+  <p style="font-size: 12.5px; font-weight: 600; color: #1B6E8C; margin: 0 0 4px; letter-spacing: 0.01em;">Regionalbeirat 2027 &middot; Wir für Sachsen</p>
+  <h2 style="font-size: 22px; font-weight: 600; color: #16232B; margin: 0 0 12px; letter-spacing: -0.01em;">Code eingeben</h2>
   <p style="font-size: 14px; color: #6B6459; line-height: 1.6; margin: 0 0 28px;">Falls die E-Mail-Adresse berechtigt ist, wurde soeben ein Code an <strong style="color: #16232B;">${email}</strong> gesendet. Bitte prüfen Sie auch Ihren Spam-Ordner.</p>
   <input type="text" id="gate-code" placeholder="6-stelliger Code" maxlength="6" style="width: 100%; padding: 13px 16px; border: 1.5px solid #E8E1D3; border-radius: 10px; box-sizing: border-box; font-size: 18px; letter-spacing: 4px; text-align: center; margin-bottom: 14px; background: #FBFAF7; outline: none;">
   <button id="gate-verify-btn" style="width: 100%; padding: 13px; background: #1B6E8C; color: #fff; border: none; border-radius: 10px; font-size: 14px; font-weight: 600; cursor: pointer;">Bestätigen</button>
