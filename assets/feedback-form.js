@@ -16,6 +16,7 @@ function ensureFeedbackFocusStyles() {
   style.textContent = `
     .fb-input:focus {
       border-color: #E8833A !important;
+      background: #fff !important;
       box-shadow: 0 0 0 3px rgba(232, 131, 58, 0.15);
     }
   `;
@@ -69,7 +70,7 @@ function buildLegalFooterHTML() {
 function buildFormHTML(landkreis, projektID, antragsnummer, projekttitel, antragsteller) {
   return `
 <div id="feedback-card" style="background: #FDFCFA; border-radius: 20px; box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 12px 32px rgba(0,0,0,0.04); border: 1px solid #EFEAE0; max-width: 480px; width: 100%; margin: 0 auto; padding: 32px 28px; box-sizing: border-box; font-family: 'Work Sans', -apple-system, 'Segoe UI', sans-serif;">
-  <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 4px;">
+  <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px;">
     <div style="width: 4px; height: 14px; background: #E8833A; border-radius: 0;"></div>
     <p style="font-size: 12.5px; font-weight: 500; color: #1B6E8C; margin: 0; letter-spacing: 0.01em;">Regionalbeirat 2027</p>
   </div>
