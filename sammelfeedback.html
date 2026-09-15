@@ -8,7 +8,11 @@
 <meta property="og:title" content="Sammel-Rückmeldung Regionalbeirat 2027">
 <meta property="og:description" content="Formular für Sammel-Rückmeldungen zu mehreren Förderanträgen im Regionalbeirat 2027.">
 <meta property="og:type" content="website">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lora:wght@600;700&family=Work+Sans:wght@400;500;600&display=swap">
+<link rel="icon" href="https://projekte.wfs-regionalbeirat.de/assets/favicon/favicon.ico">
+<link rel="icon" href="https://projekte.wfs-regionalbeirat.de/assets/favicon/favicon-32x32.png" sizes="32x32">
+<link rel="icon" href="https://projekte.wfs-regionalbeirat.de/assets/favicon/favicon-192x192.png" sizes="192x192">
+<link rel="apple-touch-icon" href="https://projekte.wfs-regionalbeirat.de/assets/favicon/favicon-180x180.png">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&display=swap">
 <style>
   * { box-sizing: border-box; }
 
@@ -23,9 +27,17 @@
   .page {
     min-height: 100vh;
     display: flex;
-    align-items: flex-start;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
     padding: 56px 20px;
+  }
+
+  .page-logo {
+    height: 130px;
+    width: auto;
+    display: block;
+    margin-bottom: 20px;
   }
 
   .card {
@@ -57,12 +69,20 @@
     flex-shrink: 0;
   }
 
-  h1 {
-    font-family: 'Lora', serif;
-    font-weight: 700;
-    font-size: 24px;
+  .head-context {
+    font-size: 12.5px;
+    font-weight: 500;
     color: #1B6E8C;
     margin: 0;
+    letter-spacing: 0.01em;
+  }
+
+  h1 {
+    font-family: 'Work Sans', sans-serif;
+    font-weight: 700;
+    font-size: 22px;
+    color: #16232B;
+    margin: 0 0 12px;
     line-height: 1.25;
   }
 
@@ -119,8 +139,9 @@
 
   select:focus, input:focus, textarea:focus {
     outline: none;
-    border-color: #1B6E8C;
+    border-color: #E8833A;
     background: #fff;
+    box-shadow: 0 0 0 3px rgba(232, 131, 58, 0.15);
   }
 
   textarea {
@@ -138,16 +159,14 @@
 
   .bottom-bar {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
+    flex-direction: column;
     margin-top: 4px;
-    gap: 16px;
+    gap: 8px;
   }
 
   .error {
     font-size: 12px;
     color: #C0503A;
-    flex: 1;
   }
 
   button.submit {
@@ -160,9 +179,8 @@
     border-radius: 10px;
     padding: 13px 28px;
     cursor: pointer;
-    white-space: nowrap;
+    width: 100%;
     transition: background 0.15s ease;
-    flex-shrink: 0;
   }
 
   button.submit:hover {
@@ -174,15 +192,8 @@
     cursor: default;
   }
 
-  .foot-note {
-    font-size: 12px;
-    color: #B8B2A5;
-    margin-top: 20px;
-    text-align: center;
-  }
-
   .legal-footer {
-    margin-top: 6px;
+    margin-top: 20px;
     text-align: center;
   }
 
@@ -250,25 +261,20 @@
     .top-row {
       grid-template-columns: 1fr;
     }
-    .bottom-bar {
-      flex-direction: column-reverse;
-      align-items: stretch;
-    }
-    button.submit {
-      width: 100%;
-    }
   }
 </style>
 </head>
 <body>
 
 <div class="page">
+  <img src="https://projekte.wfs-regionalbeirat.de/assets/wfs-logo-transparenter-hintergrund.png" alt="Wir für Sachsen" class="page-logo">
   <div class="card">
     <div class="head">
       <div class="head-stripe-row">
         <div class="head-stripe"></div>
-        <h1>Sammel-Rückmeldung Regionalbeirat 2027</h1>
+        <p class="head-context">Regionalbeirat 2027</p>
       </div>
+      <h1>Sammel-Rückmeldung</h1>
       <p class="intro">Ideal, wenn Sie Anmerkungen zu <strong>mehreren Projekten gleichzeitig</strong> abgeben möchten. Geben Sie die betreffenden Antragsnummern oder Projekt-IDs an, damit wir Ihre Rückmeldung eindeutig zuordnen können.</p>
     </div>
 
@@ -321,7 +327,6 @@
       </div>
     </form>
 
-    <p class="foot-note">Regionalbeirat 2027 · Wir für Sachsen</p>
     <p class="legal-footer">
       <a href="https://wfs-regionalbeirat.de/datenschutz" target="_blank" rel="noopener">Datenschutz</a>
       <span>&middot;</span>
