@@ -23,7 +23,7 @@ function buildLogoHeaderHTML() {
 
 function buildLegalFooterHTML() {
   return `
-<div style="margin-top: 16px; text-align: center;">
+<div style="margin-top: 16px; text-align: center; font-family: 'Inter', -apple-system, 'Segoe UI', sans-serif;">
   <a href="https://wfs-regionalbeirat.de/datenschutz" target="_blank" rel="noopener" style="font-size: 11.5px; color: #A39C8F; text-decoration: none;">Datenschutz</a>
   <span style="font-size: 11.5px; color: #D9D3C5; margin: 0 8px;">&middot;</span>
   <a href="https://buergerstiftung-dresden.de/impressum/" target="_blank" rel="noopener" style="font-size: 11.5px; color: #A39C8F; text-decoration: none;">Impressum</a>
