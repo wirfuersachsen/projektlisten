@@ -10,6 +10,28 @@ function ensureGateFonts() {
   document.head.appendChild(link);
 }
 
+function ensureGateBranding() {
+  document.title = "Wir für Sachsen – " + REGION_NAME;
+
+  const FAVICON_BASE = "https://projekte.wfs-regionalbeirat.de/assets/favicon/";
+
+  function setLink(rel, href, sizes) {
+    let el = document.querySelector("link[rel='" + rel + "']" + (sizes ? "[sizes='" + sizes + "']" : ""));
+    if (!el) {
+      el = document.createElement("link");
+      el.rel = rel;
+      if (sizes) el.sizes = sizes;
+      document.head.appendChild(el);
+    }
+    el.href = href;
+  }
+
+  setLink("icon", FAVICON_BASE + "favicon.ico");
+  setLink("icon", FAVICON_BASE + "favicon-32x32.png", "32x32");
+  setLink("icon", FAVICON_BASE + "favicon-192x192.png", "192x192");
+  setLink("apple-touch-icon", FAVICON_BASE + "favicon-180x180.png");
+}
+
 function buildLogoHeaderHTML() {
   return `
 <div style="display: flex; justify-content: center; margin-bottom: 20px;">
@@ -167,6 +189,7 @@ function showCodeStep(email) {
 
 function initGate() {
   ensureGateFonts();
+  ensureGateBranding();
 
   document.body.style.margin = "0";
   document.body.style.background = "#F5F2EC";
