@@ -13,7 +13,7 @@ function ensureInterFont() {
 function buildLogoHeaderHTML() {
   return `
 <div style="display: flex; justify-content: center; margin-bottom: 20px;">
-  <img src="https://projekte.wfs-regionalbeirat.de/assets/wfs-logo-transparenter-hintergrund.png" alt="Wir für Sachsen" style="height: 96px; width: auto; display: block;">
+  <img src="https://projekte.wfs-regionalbeirat.de/assets/wfs-logo-transparenter-hintergrund.png" alt="Wir für Sachsen" style="height: 130px; width: auto; display: block;">
 </div>
 `;
 }
