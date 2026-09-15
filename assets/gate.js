@@ -10,6 +10,19 @@ function ensureGateFonts() {
   document.head.appendChild(link);
 }
 
+function ensureGateFocusStyles() {
+  if (document.getElementById("gate-focus-style")) return;
+  const style = document.createElement("style");
+  style.id = "gate-focus-style";
+  style.textContent = `
+    .gate-input:focus {
+      border-color: #E8833A !important;
+      box-shadow: 0 0 0 3px rgba(232, 131, 58, 0.15);
+    }
+  `;
+  document.head.appendChild(style);
+}
+
 function ensureGateBranding() {
   document.title = "Wir für Sachsen – " + REGION_NAME;
 
@@ -62,7 +75,7 @@ function buildEmailStepHTML() {
   </div>
   <h2 style="font-size: 22px; font-weight: 700; color: #16232B; margin: 0 0 12px; letter-spacing: -0.01em;">${REGION_NAME}</h2>
   <p style="font-size: 14px; color: #6B6459; line-height: 1.6; margin: 0 0 28px;">Geben Sie Ihre E-Mail-Adresse ein, um Zugang zur Projektliste dieser Region zu erhalten. Sie erhalten anschließend einen Anmeldecode.</p>
-  <input type="email" id="gate-email" placeholder="ihre.email@beispiel.de" style="width: 100%; padding: 13px 16px; border: 1.5px solid #E8E1D3; border-radius: 10px; box-sizing: border-box; font-size: 14px; margin-bottom: 14px; background: #FBFAF7; outline: none;">
+  <input type="email" id="gate-email" class="gate-input" placeholder="ihre.email@beispiel.de" style="width: 100%; padding: 13px 16px; border: 1.5px solid #E8E1D3; border-radius: 10px; box-sizing: border-box; font-size: 14px; margin-bottom: 14px; background: #FBFAF7; outline: none;">
   <button id="gate-request-btn" style="width: 100%; padding: 13px; background: #1B6E8C; color: #fff; border: none; border-radius: 10px; font-size: 14px; font-weight: 600; cursor: pointer;">Code anfordern</button>
   <p id="gate-email-error" style="color: #B00020; font-size: 12.5px; margin: 12px 0 0; display: none;">Bitte geben Sie eine gültige E-Mail-Adresse ein.</p>
   <div class="footer" style="margin-top: 24px; padding-top: 20px; border-top: 1px solid #F0EBE0; display: flex; gap: 8px; align-items: flex-start;">
@@ -85,7 +98,7 @@ function buildCodeStepHTML(email) {
   </div>
   <h2 style="font-size: 22px; font-weight: 700; color: #16232B; margin: 0 0 12px; letter-spacing: -0.01em;">Code eingeben</h2>
   <p style="font-size: 14px; color: #6B6459; line-height: 1.6; margin: 0 0 28px;">Falls die E-Mail-Adresse berechtigt ist, wurde soeben ein Code an <strong style="color: #16232B;">${email}</strong> gesendet. Bitte prüfen Sie auch Ihren Spam-Ordner.</p>
-  <input type="text" id="gate-code" placeholder="6-stelliger Code" maxlength="6" style="width: 100%; padding: 13px 16px; border: 1.5px solid #E8E1D3; border-radius: 10px; box-sizing: border-box; font-size: 18px; letter-spacing: 4px; text-align: center; margin-bottom: 14px; background: #FBFAF7; outline: none;">
+  <input type="text" id="gate-code" class="gate-input" placeholder="6-stelliger Code" maxlength="6" style="width: 100%; padding: 13px 16px; border: 1.5px solid #E8E1D3; border-radius: 10px; box-sizing: border-box; font-size: 18px; letter-spacing: 4px; text-align: center; margin-bottom: 14px; background: #FBFAF7; outline: none;">
   <button id="gate-verify-btn" style="width: 100%; padding: 13px; background: #1B6E8C; color: #fff; border: none; border-radius: 10px; font-size: 14px; font-weight: 600; cursor: pointer;">Bestätigen</button>
   <p id="gate-code-error" style="color: #B00020; font-size: 12.5px; margin: 12px 0 0; display: none;">Der Code ist ungültig oder abgelaufen. Bitte laden Sie die Seite neu, um einen neuen Code anzufordern.</p>
 </div>
@@ -190,6 +203,7 @@ function showCodeStep(email) {
 function initGate() {
   ensureGateFonts();
   ensureGateBranding();
+  ensureGateFocusStyles();
 
   document.body.style.margin = "0";
   document.body.style.background = "#F5F2EC";
