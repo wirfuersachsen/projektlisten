@@ -17,6 +17,7 @@ function ensureGateFocusStyles() {
   style.textContent = `
     .gate-input:focus {
       border-color: #E8833A !important;
+      background: #fff !important;
       box-shadow: 0 0 0 3px rgba(232, 131, 58, 0.15);
     }
   `;
@@ -69,7 +70,7 @@ function buildEmailStepHTML() {
   <div class="icon-badge" style="width: 44px; height: 44px; border-radius: 12px; background: #1B6E8C; display: flex; align-items: center; justify-content: center; margin-bottom: 16px;">
     <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 22px; height: 22px;"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
   </div>
-  <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 4px;">
+  <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px;">
     <div style="width: 4px; height: 14px; background: #E8833A; border-radius: 0;"></div>
     <p style="font-size: 12.5px; font-weight: 500; color: #1B6E8C; margin: 0; letter-spacing: 0.01em;">Regionalbeirat 2027</p>
   </div>
@@ -92,7 +93,7 @@ function buildCodeStepHTML(email) {
   <div class="icon-badge" style="width: 44px; height: 44px; border-radius: 12px; background: #1B6E8C; display: flex; align-items: center; justify-content: center; margin-bottom: 16px;">
     <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 22px; height: 22px;"><path d="M22 6 12 13 2 6"/><rect x="2" y="4" width="20" height="16" rx="2"/></svg>
   </div>
-  <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 4px;">
+  <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px;">
     <div style="width: 4px; height: 14px; background: #E8833A; border-radius: 0;"></div>
     <p style="font-size: 12.5px; font-weight: 500; color: #1B6E8C; margin: 0; letter-spacing: 0.01em;">Regionalbeirat 2027</p>
   </div>
