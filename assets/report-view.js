@@ -1,6 +1,40 @@
+function ensureReportViewFonts() {
+  if (document.getElementById("report-view-font")) return;
+  const FONT_BASE = "https://projekte.wfs-regionalbeirat.de/assets/fonts/";
+  const style = document.createElement("style");
+  style.id = "report-view-font";
+  style.textContent = `
+    @font-face {
+      font-family: 'Work Sans';
+      src: url('${FONT_BASE}work-sans-400.woff2') format('woff2');
+      font-weight: 400;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Work Sans';
+      src: url('${FONT_BASE}work-sans-500.woff2') format('woff2');
+      font-weight: 500;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Work Sans';
+      src: url('${FONT_BASE}work-sans-600.woff2') format('woff2');
+      font-weight: 600;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Work Sans';
+      src: url('${FONT_BASE}work-sans-700.woff2') format('woff2');
+      font-weight: 700;
+      font-display: swap;
+    }
+  `;
+  document.head.appendChild(style);
+}
+
 function showFeedbackConfirmationBanner(projektID) {
   const banner = document.createElement("div");
-  banner.style.cssText = "position: fixed; top: 20px; left: 50%; transform: translateX(-50%); background: #1B6E8C; color: #fff; padding: 14px 22px; border-radius: 12px; font-family: 'Inter', -apple-system, 'Segoe UI', sans-serif; font-size: 14px; font-weight: 500; box-shadow: 0 8px 24px rgba(0,0,0,0.2); z-index: 9996; display: flex; align-items: center; gap: 10px; max-width: 90%; box-sizing: border-box;";
+  banner.style.cssText = "position: fixed; top: 20px; left: 50%; transform: translateX(-50%); background: #1B6E8C; color: #fff; padding: 14px 22px; border-radius: 12px; font-family: 'Work Sans', -apple-system, 'Segoe UI', sans-serif; font-size: 14px; font-weight: 500; box-shadow: 0 8px 24px rgba(0,0,0,0.2); z-index: 9996; display: flex; align-items: center; gap: 10px; max-width: 90%; box-sizing: border-box;";
   banner.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="width: 18px; height: 18px; flex-shrink: 0;"><polyline points="20 6 9 17 4 12"/></svg><span>Ihr Feedback zu Projekt ${projektID} wurde übermittelt. Vielen Dank!</span>`;
   document.body.appendChild(banner);
   setTimeout(function () {
@@ -77,7 +111,7 @@ window.WFS_PDF_URL = sessionData ? sessionData.pdf : "";
 
 function showReloginPrompt() {
   const wrap = document.createElement("div");
-  wrap.style.cssText = "font-family: 'Inter', -apple-system, 'Segoe UI', sans-serif; max-width: 420px; margin: 80px auto; padding: 40px 36px; background: #FDFCFA; border-radius: 20px; border: 1px solid #EFEAE0; box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 12px 32px rgba(0,0,0,0.04); text-align: center; box-sizing: border-box;";
+  wrap.style.cssText = "font-family: 'Work Sans', -apple-system, 'Segoe UI', sans-serif; max-width: 420px; margin: 80px auto; padding: 40px 36px; background: #FDFCFA; border-radius: 20px; border: 1px solid #EFEAE0; box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 12px 32px rgba(0,0,0,0.04); text-align: center; box-sizing: border-box;";
   wrap.innerHTML = `
     <div style="width: 44px; height: 44px; border-radius: 12px; background: #1B6E8C; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px;">
       <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 22px; height: 22px;"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
@@ -93,6 +127,8 @@ function showReloginPrompt() {
 }
 
 function initReportView() {
+  ensureReportViewFonts();
+
   if (!reportUrl) {
     showReloginPrompt();
     return;
