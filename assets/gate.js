@@ -6,7 +6,7 @@ function ensureGateFonts() {
   const link = document.createElement("link");
   link.id = "gate-font";
   link.rel = "stylesheet";
-  link.href = "https://fonts.googleapis.com/css2?family=Lora:wght@600;700&family=Work+Sans:wght@400;500;600&display=swap";
+  link.href = "https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&display=swap";
   document.head.appendChild(link);
 }
 
@@ -60,7 +60,7 @@ function buildEmailStepHTML() {
     <div style="width: 4px; height: 14px; background: #E8833A; border-radius: 0;"></div>
     <p style="font-size: 12.5px; font-weight: 500; color: #1B6E8C; margin: 0; letter-spacing: 0.01em;">Regionalbeirat 2027</p>
   </div>
-  <h2 style="font-family: 'Lora', serif; font-size: 24px; font-weight: 700; color: #16232B; margin: 0 0 12px; letter-spacing: -0.01em;">${REGION_NAME}</h2>
+  <h2 style="font-size: 22px; font-weight: 700; color: #16232B; margin: 0 0 12px; letter-spacing: -0.01em;">${REGION_NAME}</h2>
   <p style="font-size: 14px; color: #6B6459; line-height: 1.6; margin: 0 0 28px;">Geben Sie Ihre E-Mail-Adresse ein, um Zugang zur Projektliste dieser Region zu erhalten. Sie erhalten anschließend einen Anmeldecode.</p>
   <input type="email" id="gate-email" placeholder="ihre.email@beispiel.de" style="width: 100%; padding: 13px 16px; border: 1.5px solid #E8E1D3; border-radius: 10px; box-sizing: border-box; font-size: 14px; margin-bottom: 14px; background: #FBFAF7; outline: none;">
   <button id="gate-request-btn" style="width: 100%; padding: 13px; background: #1B6E8C; color: #fff; border: none; border-radius: 10px; font-size: 14px; font-weight: 600; cursor: pointer;">Code anfordern</button>
@@ -83,7 +83,7 @@ function buildCodeStepHTML(email) {
     <div style="width: 4px; height: 14px; background: #E8833A; border-radius: 0;"></div>
     <p style="font-size: 12.5px; font-weight: 500; color: #1B6E8C; margin: 0; letter-spacing: 0.01em;">Regionalbeirat 2027</p>
   </div>
-  <h2 style="font-family: 'Lora', serif; font-size: 24px; font-weight: 700; color: #16232B; margin: 0 0 12px; letter-spacing: -0.01em;">Code eingeben</h2>
+  <h2 style="font-size: 22px; font-weight: 700; color: #16232B; margin: 0 0 12px; letter-spacing: -0.01em;">Code eingeben</h2>
   <p style="font-size: 14px; color: #6B6459; line-height: 1.6; margin: 0 0 28px;">Falls die E-Mail-Adresse berechtigt ist, wurde soeben ein Code an <strong style="color: #16232B;">${email}</strong> gesendet. Bitte prüfen Sie auch Ihren Spam-Ordner.</p>
   <input type="text" id="gate-code" placeholder="6-stelliger Code" maxlength="6" style="width: 100%; padding: 13px 16px; border: 1.5px solid #E8E1D3; border-radius: 10px; box-sizing: border-box; font-size: 18px; letter-spacing: 4px; text-align: center; margin-bottom: 14px; background: #FBFAF7; outline: none;">
   <button id="gate-verify-btn" style="width: 100%; padding: 13px; background: #1B6E8C; color: #fff; border: none; border-radius: 10px; font-size: 14px; font-weight: 600; cursor: pointer;">Bestätigen</button>
