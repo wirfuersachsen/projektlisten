@@ -75,7 +75,8 @@ function buildFormHTML(landkreis, projektID, antragsnummer, projekttitel, antrag
     <div style="width: 4px; height: 14px; background: #E8833A; border-radius: 0;"></div>
     <p style="font-size: 12.5px; font-weight: 500; color: #1B6E8C; margin: 0; letter-spacing: 0.01em;">Regionalbeirat 2027</p>
   </div>
-  <h2 style="font-size: 19px; font-weight: 700; color: #16232B; margin: 0 0 4px;">Feedback zum Bewilligungsvorschlag: "${projekttitel}"</h2>
+  <h2 style="font-size: 19px; font-weight: 700; color: #16232B; margin: 0 0 12px;">Feedback zum Bewilligungsvorschlag</h2>
+  <p style="font-size: 16px; font-weight: 400; color: #16232B; margin: 0 0 16px; line-height: 1.4;"><strong style="font-weight: 700;">Projekt:</strong> ${projekttitel}</p>
   <p style="font-size: 13px; color: #8A8377; margin: 0 0 2px;"><strong style="color: #16232B;">Antragsteller:</strong> ${antragsteller}</p>
   <p style="font-size: 13px; color: #8A8377; margin: 0 0 24px;">${landkreis} &middot; Projekt-ID ${projektID} &middot; ${antragsnummer}</p>
 
