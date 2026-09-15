@@ -13,6 +13,16 @@ function getParam(name) {
   return new URLSearchParams(window.location.search).get(name) || "";
 }
 
+function buildLegalFooterHTML() {
+  return `
+  <div class="legal-footer" style="margin-top: 20px; padding-top: 16px; border-top: 1px solid #F0EBE0; text-align: center;">
+    <a href="https://wfs-regionalbeirat.de/datenschutz" target="_blank" rel="noopener" style="font-size: 11.5px; color: #A39C8F; text-decoration: none;">Datenschutz</a>
+    <span style="font-size: 11.5px; color: #D9D3C5; margin: 0 6px;">&middot;</span>
+    <a href="https://buergerstiftung-dresden.de/impressum/" target="_blank" rel="noopener" style="font-size: 11.5px; color: #A39C8F; text-decoration: none;">Impressum</a>
+  </div>
+`;
+}
+
 function buildFormHTML(landkreis, projektID, antragsnummer, projekttitel, antragsteller) {
   return `
 <div id="feedback-card" style="max-width: 480px; margin: 0 auto; padding: 32px 28px; box-sizing: border-box; font-family: 'Inter', -apple-system, 'Segoe UI', sans-serif;">
@@ -37,6 +47,7 @@ function buildFormHTML(landkreis, projektID, antragsnummer, projekttitel, antrag
 
     <button type="submit" id="fb-submit" style="width: 100%; padding: 13px; background: #1B6E8C; color: #fff; border: none; border-radius: 10px; font-size: 14px; font-weight: 600; font-family: inherit; cursor: pointer;">Absenden</button>
   </form>
+  ${buildLegalFooterHTML()}
 </div>
 `;
 }
