@@ -21,6 +21,13 @@ const SECTIONS = [
       { name: "Anmeldungen (Excel-Antworten)", desc: "Wer sich für welche Region(en) angemeldet hat", url: "https://buergerstiftungdresden-my.sharepoint.com/:x:/r/personal/tommy_ruelke_wir-fuer-sachsen_com/_layouts/15/Doc.aspx?sourcedoc=%7B2287A99E-1592-4508-94DA-AFD445D415ED%7D&file=Wir%20f%C3%BCr%20Sachsen%20_Regionalbeirat%202027%20-%20Anmeldung.xlsx&action=edit&mobileredirect=true" },
       { name: "Whitelist (nur bei Rückfragen)", desc: "Zeigt, ob eine E-Mail-Adresse für eine Region freigeschaltet ist", url: "https://buergerstiftungdresden.sharepoint.com/sites/WfS2023/Lists/Beirat%20Whitelist%202027/AllItems.aspx" }
     ]
+  },
+  {
+    title: "Beiratssitzungen",
+    icon: "📹",
+    items: [
+      { name: "Videokonferenzen (Excel)", desc: "Termine, Links und Zuständigkeiten der 13 Sitzungen, 14.–22.01.2027", url: "https://buergerstiftungdresden.sharepoint.com/:x:/s/WfS2023/IQAuiHsD-cVFQq5hmjHghP-mAcVUkXypQTnWC9gYmEHYNf4?e=bSNNSk&web=1" }
+    ]
   }
 ];
 
@@ -50,7 +57,7 @@ function buildDashboardHTML() {
   return `
   <div style="max-width: 900px; margin: 0 auto; padding: 40px 32px 60px; font-family: 'Inter', -apple-system, 'Segoe UI', sans-serif; box-sizing: border-box;">
     <h1 style="font-size: 24px; font-weight: 600; color: #16232B; margin: 0 0 4px;">Team-Übersicht</h1>
-    <p style="font-size: 13.5px; color: #8A8377; margin: 0 0 32px;">Feedback und Anmeldungen der Beiräte.</p>
+    <p style="font-size: 13.5px; color: #8A8377; margin: 0 0 32px;">Feedback, Anmeldungen und Sitzungen der Beiräte.</p>
     ${sectionsHTML}
   </div>
   `;
