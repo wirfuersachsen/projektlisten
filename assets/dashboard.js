@@ -41,6 +41,13 @@ const SECTIONS = [
     ]
   },
   {
+    title: "Beiratssitzungen",
+    icon: "📹",
+    items: [
+      { name: "Videokonferenzen (Excel)", desc: "Termine, Links und Zuständigkeiten der 13 Sitzungen, 14.–22.01.2027", url: "https://buergerstiftungdresden.sharepoint.com/:x:/s/WfS2023/IQAuiHsD-cVFQq5hmjHghP-mAcVUkXypQTnWC9gYmEHYNf4?e=bSNNSk&web=1" }
+    ]
+  },
+  {
     title: "Power-Automate-Flows",
     icon: "⚙️",
     items: [
